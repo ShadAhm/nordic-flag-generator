@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>Nordic Flag Generator</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <script src="scripts/script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="diag-flag" version="1.1" width="450" height="327.27272727272725" viewBox="0 0 450 327.27272727272725">
+            <g>
+                <rect id="diag-flag-background" x="0" y="0" width="450" height="327.27272727272725" fill="#b30027" stroke="none" pointer-events="all" style="fill: rgb(101, 32, 47);"></rect>
+                <rect id="diag-flag-cross-h" x="0" y="35" width="450" height="30" fill="#ffffff" stroke="none" pointer-events="all" style="fill: rgb(255, 255, 255);"></rect>
+                <rect id="diag-flag-cross-v" x="34" y="0" width="31" height="327.27272727272725" fill="#ffffff" stroke="none" pointer-events="all" style="fill: rgb(255, 255, 255);"></rect>
+                <rect id="diag-flag-innercross-v" x="39" y="0" width="20" height="327.27272727272725" fill="#071b5c" stroke="none" pointer-events="all" style="fill: rgb(7, 27, 92);"></rect>
+                <rect id="diag-flag-innercross-h" x="0" y="40" width="450" height="20" fill="#071b5c" stroke="none" pointer-events="all" style="fill: rgb(7, 27, 92);"></rect>
+            </g>
+        </svg>
+        <form>
+            <fieldset name="colors-settings">
+                <label for="flag-background-color">Background color:</label>
+                <input type="color" id="flag-background-color" name="flag-backg round-color" value="#b30027" onchange="updateFlag()">
+                <label for="flag-cross-color">Cross color:</label>
+                <input type="color" id="flag-cross-color" name="flag-cross-color" value="#071b5c" onchange="updateFlag()">
+                <label for="flag-innercross-color">Inner cross color:</label>
+                <input type="color" id="flag-innercross-color" name="flag-innercross-color" value="#ffffff" onchange="updateFlag()">
+            </fieldset>
+            <fieldset name="ratio-settings">
+                <label for="flag-inner-cross">Has inner cross:</label><br>
+                <input type="radio" id="flag-inner-cross-yes" name="flag-has-inner-cross" value="yes" onchange="updateFlag()">
+                <label for="flag-inner-cross-yes">Yes like Norway, Iceland</label><br>
+                <input type="radio" id="flag-inner-cross-no" name="flag-has-inner-cross" value="no" checked onchange="updateFlag()">
+                <label for="flag-inner-cross-no">No like Sweden, Finland, Denmark, </label><br>
+            </fieldset>
+            <fieldset name="ratio-settings">
+                <label for="flag-ratio">Aspect ratio:</label><br>
+                <input type="radio" id="flag-ratio-sweden" name="flag-ratio" value="sweden" checked onchange="updateFlag()">
+                <label for="flag-ratio-sweden">Like Sweden</label><br>
+                <input type="radio" id="flag-ratio-denmark" name="flag-ratio" value="denmark" onchange="updateFlag()">
+                <label for="flag-ratio-denmark">Like Denmark</label><br>
+                <input type="radio" id="flag-ratio-norway" name="flag-ratio" value="norway" onchange="updateFlag()">
+                <label for="flag-ratio-norway">Like Norway</label><br>
+                <input type="radio" id="flag-ratio-finland" name="flag-ratio" value="finland" onchange="updateFlag()">
+                <label for="flag-ratio-finland">Like Finland</label><br>
+                <input type="radio" id="flag-ratio-iceland" name="flag-ratio" value="iceland" onchange="updateFlag()">
+                <label for="flag-ratio-iceland">Like Iceland</label><br>
+            </fieldset>
+        </form>
+    </div>
+</html>
