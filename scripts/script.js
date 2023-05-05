@@ -1,81 +1,150 @@
+import { FlagSpecBuilder } from "./flag-spec-builder.js";
+import { FlagColourBuilder } from "./flag-colour-builder.js";
+
+attachEventListeners();
+const flagColorBuilder = new FlagColourBuilder();
+const flagSpecBuilder = new FlagSpecBuilder();
+
+function attachEventListeners() {
+    const flagBackgroundColourInput = document.getElementById('flag-background-colour');
+    flagBackgroundColourInput.addEventListener('change', updateFlagColourFromInput);
+
+    const flagCrossColourInput = document.getElementById('flag-cross-colour');
+    flagCrossColourInput.addEventListener('change', updateFlagColourFromInput);
+
+    const flagInnerCrossColourInput = document.getElementById('flag-innercross-colour');
+    flagInnerCrossColourInput.addEventListener('change', updateFlagColourFromInput);
+
+    const flagHasInnerCrossYesInput = document.getElementById('flag-inner-cross-yes');
+    flagHasInnerCrossYesInput.addEventListener('change', updateFlag);
+
+    const flagHasInnerCrossNoInput = document.getElementById('flag-inner-cross-no');
+    flagHasInnerCrossNoInput.addEventListener('change', updateFlag);
+
+    const flagRatioSwedenInput = document.getElementById('flag-ratio-sweden');
+    flagRatioSwedenInput.addEventListener('change', updateFlag);
+
+    const flagRatioDenmarkInput = document.getElementById('flag-ratio-denmark');
+    flagRatioDenmarkInput.addEventListener('change', updateFlag);
+
+    const flagRatioNorwayInput = document.getElementById('flag-ratio-norway');
+    flagRatioNorwayInput.addEventListener('change', updateFlag);
+
+    const flagRatioFinlandInput = document.getElementById('flag-ratio-finland');
+    flagRatioFinlandInput.addEventListener('change', updateFlag);
+
+    const flagRatioIcelandInput = document.getElementById('flag-ratio-iceland');
+    flagRatioIcelandInput.addEventListener('change', updateFlag);
+
+    const flagTemplateSwedenInput = document.getElementById('flag-template-sweden');
+    flagTemplateSwedenInput.addEventListener('change', updateFlagTemplate);
+
+    const flagTemplateDenmarkInput = document.getElementById('flag-template-denmark');
+    flagTemplateDenmarkInput.addEventListener('change', updateFlagTemplate);
+
+    const flagTemplateNorwayInput = document.getElementById('flag-template-norway');
+    flagTemplateNorwayInput.addEventListener('change', updateFlagTemplate);
+
+    const flagTemplateFinlandInput = document.getElementById('flag-template-finland');
+    flagTemplateFinlandInput.addEventListener('change', updateFlagTemplate);
+
+    const flagTemplateIcelandInput = document.getElementById('flag-template-iceland');
+    flagTemplateIcelandInput.addEventListener('change', updateFlagTemplate);
+}
+
 function updateFlag() {
     const {
-        innerCrossColor,
-        CrossColor,
-        backgroundColor,
-        flagTemplate,
-        hasInnerCross
-    } = getFlagSettings();
+        innerCrossColour,
+        crossColour,
+        backgroundColour,
+        flagRatio,
+        hasInnerCross,
+        flagTemplate
+    } = readUserInputs();
 
-    updateFlagColours(innerCrossColor, CrossColor, backgroundColor, hasInnerCross);
+    updateFlagColours(innerCrossColour, crossColour, backgroundColour, hasInnerCross);
+    updateFlagDimensions(flagRatio);
+}
+
+function updateFlagTemplate() {
+    const flagTemplate = readFromRadioButtons("flag-template");
+    const { backgroundColour, crossColour, innerCrossColour } = flagColorBuilder.withTemplate(flagTemplate).build();
+
+    updateFlagColours(innerCrossColour, crossColour, backgroundColour, false);
     updateFlagDimensions(flagTemplate);
 }
 
-function getFlagSettings() {
-    const innerCrossColor = document.getElementById("flag-innercross-color").value;
-    const CrossColor = document.getElementById("flag-cross-color").value;
-    const backgroundColor = document.getElementById("flag-background-color").value;
-    const flagTemplate = getFromFlagTemplateRadioButton();
-    const hasInnerCross = getFromHasInnerCrossRadioButton();
+function updateFlagColourFromInput() {
+    const { backgroundColour, crossColour, innerCrossColour } = flagColorBuilder.withColours(
+        document.getElementById("flag-background-colour").value,
+        document.getElementById("flag-cross-colour").value,
+        document.getElementById("flag-innercross-colour").value
+    ).build();
+
+    updateFlagColours(innerCrossColour, crossColour, backgroundColour, false);
+}
+
+function readUserInputs() {
+    const innerCrossColour = document.getElementById("flag-innercross-colour").value;
+    const crossColour = document.getElementById("flag-cross-colour").value;
+    const backgroundColour = document.getElementById("flag-background-colour").value;
+    const flagRatio = readFromRadioButtons("flag-ratio");
+    const flagTemplate = readFromRadioButtons("flag-template");
+    const hasInnerCross = readFromRadioButtons("flag-has-inner-cross") == 'yes';
 
     return {
-        innerCrossColor,
-        CrossColor,
-        backgroundColor,
-        flagTemplate,
-        hasInnerCross
+        innerCrossColour,
+        crossColour: crossColour,
+        backgroundColour,
+        flagRatio,
+        hasInnerCross,
+        flagTemplate
     }
 }
 
-function getFromFlagTemplateRadioButton() {
-    const flagRatio = document.getElementsByName("flag-ratio");
-    for (let i = 0; i < flagRatio.length; i++) {
-        if (flagRatio[i].checked) {
-            return flagRatio[i].value;
+function readFromRadioButtons(whichName) {
+    const radios = document.getElementsByName(whichName);
+    for (let i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            return radios[i].value;
         }
     }
 }
 
-function getFromHasInnerCrossRadioButton() {
-    const hasInnerCross = document.getElementsByName("flag-has-inner-cross");
-    for (let i = 0; i < hasInnerCross.length; i++) {
-        if (hasInnerCross[i].checked) {
-            return hasInnerCross[i].value == 'yes';
-        }
-    }
-}
-
-function updateFlagColours(innerCrossColor, CrossColor, backgroundColor, hasInnerCross) {
+function updateFlagColours(innerCrossColour, CrossColour, backgroundColour, hasInnerCross) {
+    const crossHorizontal = document.getElementById("diag-flag-cross-h");
+    const crossVertical = document.getElementById("diag-flag-cross-v");
     const innerCrossHorizontal = document.getElementById("diag-flag-innercross-h");
     const innerCrossVertical = document.getElementById("diag-flag-innercross-v");
-    const CrossHorizontal = document.getElementById("diag-flag-cross-h");
-    const CrossVertical = document.getElementById("diag-flag-cross-v");
     const background = document.getElementById("diag-flag-background");
 
-    innerCrossVertical.style.opacity = hasInnerCross ? 1 : 0;
-    innerCrossHorizontal.style.opacity = hasInnerCross ? 1 : 0;
+    // innerCrossVertical.style.opacity = hasInnerCross ? 1 : 0;
+    // innerCrossHorizontal.style.opacity = hasInnerCross ? 1 : 0;
 
-    innerCrossHorizontal.style.fill = innerCrossColor;
-    innerCrossVertical.style.fill = innerCrossColor;
-    CrossHorizontal.style.fill = CrossColor;
-    CrossVertical.style.fill = CrossColor;
-    background.style.fill = backgroundColor;
+    crossHorizontal.style.fill = CrossColour;
+    crossVertical.style.fill = CrossColour;
+    innerCrossHorizontal.style.fill = innerCrossColour;
+    innerCrossVertical.style.fill = innerCrossColour;
+
+    background.style.fill = backgroundColour;
 }
 
-function updateFlagDimensions(flagTemplate) {
-    const width = 450;
-    const flagRatio = getFlagRatioFromTemplate(flagTemplate);
-    const height = calculateFlagHeight(width, flagRatio);
-
-    const innerCrossHorizontalHeight = calculateInnerCrossHorizontalHeight(height, flagTemplate);
-    const innerCrossHorizontalPosY = calculateInnerCrossHorizontalPosY(height, innerCrossHorizontalHeight);
-    const innerCrossVerticalWidth = calculateInnerCrossVerticalWidth(width, flagTemplate);
-    const innerCrossVerticalPosX = (width - innerCrossVerticalWidth) / 2;
-
-    const CrossHorizontalHeight = height * 0.14;
-    const CrossHorizontalPosY = (height - CrossHorizontalHeight) / 5;
-    const CrossVerticalWidth = width * 0.14;
-    const CrossVerticalPosX = (width - CrossVerticalWidth) / 5;
+function updateFlagDimensions(flagRatio) {
+    var {
+        width,
+        height,
+        innerCrossHorizontalHeight,
+        innerCrossHorizontalPosY,
+        innerCrossVerticalWidth,
+        innerCrossVerticalPosX,
+        crossHorizontalHeight,
+        crossHorizontalPosY,
+        crossVerticalWidth,
+        crossVerticalPosX
+    } = flagSpecBuilder
+        .withWidth(450)
+        .withTemplateName(flagRatio)
+        .build();
 
     const flagDiagramSvg = document.getElementById("diag-flag");
     flagDiagramSvg.setAttribute("width", width);
@@ -86,6 +155,16 @@ function updateFlagDimensions(flagTemplate) {
     flagBackground.setAttribute("width", width);
     flagBackground.setAttribute("height", height);
 
+    const crossHorizontal = document.getElementById("diag-flag-cross-h");
+    crossHorizontal.setAttribute("width", width);
+    crossHorizontal.setAttribute("height", crossHorizontalHeight);
+    crossHorizontal.setAttribute("y", crossHorizontalPosY);
+
+    const crossVertical = document.getElementById("diag-flag-cross-v");
+    crossVertical.setAttribute("height", height);
+    crossVertical.setAttribute("width", crossVerticalWidth);
+    crossVertical.setAttribute("x", crossVerticalPosX);
+
     const innerCrossHorizontal = document.getElementById("diag-flag-innercross-h");
     innerCrossHorizontal.setAttribute("width", width);
     innerCrossHorizontal.setAttribute("height", innerCrossHorizontalHeight);
@@ -95,87 +174,4 @@ function updateFlagDimensions(flagTemplate) {
     innerCrossVertical.setAttribute("height", height);
     innerCrossVertical.setAttribute("width", innerCrossVerticalWidth);
     innerCrossVertical.setAttribute("x", innerCrossVerticalPosX);
-
-    const CrossHorizontal = document.getElementById("diag-flag-cross-h");
-    CrossHorizontal.setAttribute("width", width);
-    CrossHorizontal.setAttribute("height", CrossHorizontalHeight);
-    CrossHorizontal.setAttribute("y", CrossHorizontalPosY);
-
-    const CrossVertical = document.getElementById("diag-flag-cross-v");
-    CrossVertical.setAttribute("height", height);
-    CrossVertical.setAttribute("width", CrossVerticalWidth);
-    CrossVertical.setAttribute("x", CrossVerticalPosX);
-}
-
-function calculateFlagHeight(width, aspectRatio) {
-    return width / aspectRatio;
-}
-
-function getFlagRatioFromTemplate(flagTemplate) {
-    switch (flagTemplate) {
-        case 'sweden':
-            return 1.6;
-        case 'norway':
-            return 1.375;
-        case 'denmark':
-            return 1.321;
-        case 'finland':
-            return 1.636;
-        case 'iceland':
-            return 1.389;
-        default:
-            return 1.6;
-    }
-}
-
-function calculateInnerCrossHorizontalHeight(flagHeight, flagTemplate) {   
-    let proportion = 0.2;
-    
-    switch (flagTemplate) {
-        case 'sweden': 
-            proportion = 0.2;
-            break;
-        case 'norway':
-            proportion = 1; // todo
-            break;
-        case 'denmark':
-            proportion = 0.1116; // todo
-            break;
-        case 'finland':
-            proportion = 0.2727;
-            break;
-        case 'iceland':
-            proportion = 1; // todo
-            break;
-    }
-
-    return flagHeight * proportion;
-}
-
-function calculateInnerCrossVerticalWidth(flagWidth, flagTemplate) {
-    let proportion = 0.125;
-    
-    switch (flagTemplate) {
-        case 'sweden': 
-            proportion = 0.125;
-            break;
-        case 'norway':
-            proportion = 1; // todo
-            break;
-        case 'denmark':
-            proportion = 0.1429; // todo
-            break;
-        case 'finland':
-            proportion = 0.1667;
-            break;
-        case 'iceland':
-            proportion = 1; // todo
-            break;
-    }
-
-    return flagWidth * proportion;
-}
-
-function calculateInnerCrossHorizontalPosY(flagHeight, innerCrossHorizontalHeight) {
-    return (flagHeight - innerCrossHorizontalHeight) / 2;
 }
