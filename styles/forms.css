@@ -1,0 +1,4 @@
+fieldset[name="cross-settings"] {
+    display: flex;
+    flex-direction: column;
+}
