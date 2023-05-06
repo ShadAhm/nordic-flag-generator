@@ -1,9 +1,6 @@
 import { FlagSpec } from "./flag-spec.js";
 
 export class FlagSpecBuilder {
-    templateName = null;
-    width = 0;
-    height = 0;
     aspectRatio = 0;
 
     verticalCrossProportion = 0; // the proportion of the width of the flag that the vertical cross takes up
@@ -16,27 +13,23 @@ export class FlagSpecBuilder {
     horizontalCrossDistanceFromTop = 0;
     horizontalInnerCrossDistanceFromTop = 0;
 
-    crossHorizontalHeight = 0;
-    crossHorizontalPosY = 0;
-    crossVerticalWidth = 0;
-    crossVerticalPosX = 0;
-
-    innerCrossHorizontalHeight = 0;
-    innerCrossHorizontalPosY = 0;
-    innerCrossVerticalWidth = 0;
-    innerCrossVerticalPosX = 0;
-
     constructor() {
     }
 
-    withWidth(width) {
-        this.width = width;
+    withDefault() {
+        this.aspectRatio = 1.6;
+        this.verticalCrossProportion = 0.125;
+        this.horizontalCrossProportion = 0.2;
+        this.verticalInnerCrossProportion = 0;
+        this.horizontalInnerCrossProportion = 0;
+        this.horizontalCrossDistanceFromTop =  0.4;
+        this.horizontalInnerCrossDistanceFromTop = 0;
+        this.verticalCrossDistanceFromLeft = 0.3125;
+        this.verticalInnerCrossDistanceFromLeft = 0;
         return this;
     }
-
+    
     withTemplateName(templateName) {
-        this.templateName = templateName;
-
         switch (templateName) {
             case 'norway':
                 {
@@ -73,7 +66,7 @@ export class FlagSpecBuilder {
                     this.horizontalInnerCrossProportion = 0;
                     this.horizontalCrossDistanceFromTop = 0.3636;
                     this.horizontalInnerCrossDistanceFromTop = 0;
-                    this.verticalCrossDistanceFromLeft =0.2777;
+                    this.verticalCrossDistanceFromLeft = 0.2777;
                     this.verticalInnerCrossDistanceFromLeft = 0;
                     break;
                 }
@@ -106,40 +99,20 @@ export class FlagSpecBuilder {
                 }
         }
 
-        this.height = this.width / this.aspectRatio;
-
-        this.crossVerticalWidth = this.width * this.verticalCrossProportion;
-        this.crossVerticalPosX = this.width * this.verticalCrossDistanceFromLeft;
-        this.crossHorizontalHeight = this.height * this.horizontalCrossProportion;
-        this.crossHorizontalPosY = this.height  *  this.horizontalCrossDistanceFromTop;
-
-        this.innerCrossVerticalWidth = this.width * this.verticalInnerCrossProportion;
-        this.innerCrossVerticalPosX = this.width  *  this.verticalInnerCrossDistanceFromLeft;
-        this.innerCrossHorizontalHeight = this.height * this.horizontalInnerCrossProportion;
-        this.innerCrossHorizontalPosY = this.height * this.horizontalInnerCrossDistanceFromTop;
-
-        
         return this;
     }
 
     build() {
         return new FlagSpec(
-            this.templateName,
-            this.width,
-            this.height,
             this.aspectRatio,
             this.verticalCrossProportion,
             this.verticalInnerCrossProportion,
             this.horizontalCrossProportion,
+            this.horizontalCrossDistanceFromTop,
             this.horizontalInnerCrossProportion,
-            this.crossHorizontalHeight,
-            this.crossHorizontalPosY,
-            this.crossVerticalWidth,
-            this.crossVerticalPosX,
-            this.innerCrossHorizontalHeight,
-            this.innerCrossHorizontalPosY,
-            this.innerCrossVerticalWidth,
-            this.innerCrossVerticalPosX
+            this.horizontalInnerCrossDistanceFromTop,
+            this.verticalCrossDistanceFromLeft,
+            this.verticalInnerCrossDistanceFromLeft
         )
     }
 }

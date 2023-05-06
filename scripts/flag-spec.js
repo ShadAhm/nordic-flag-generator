@@ -1,20 +1,13 @@
 export class FlagSpec {
-    constructor(templateName, width, height, aspectRatio, verticalCrossProportion, verticalInnerCrossProportion, horizontalCrossProportion, horizontalInnerCrossProportion, crossHorizontalHeight, crossHorizontalPosY, crossVerticalWidth, crossVerticalPosX, innerCrossHorizontalHeight, innerCrossHorizontalPosY, innerCrossVerticalWidth, innerCrossVerticalPosX) {
-        this.templateName = templateName;
-        this.width = width;
-        this.height = height;
+    constructor(aspectRatio, verticalCrossProportion, verticalInnerCrossProportion, horizontalCrossProportion, horizontalCrossDistanceFromTop, horizontalInnerCrossProportion, horizontalInnerCrossDistanceFromTop, verticalCrossDistanceFromLeft, verticalInnerCrossDistanceFromLeft) {
         this.aspectRatio = aspectRatio;
         this.verticalCrossProportion = verticalCrossProportion;
         this.verticalInnerCrossProportion = verticalInnerCrossProportion;
         this.horizontalCrossProportion = horizontalCrossProportion;
+        this.horizontalCrossDistanceFromTop =  horizontalCrossDistanceFromTop;
         this.horizontalInnerCrossProportion = horizontalInnerCrossProportion;
-        this.crossHorizontalHeight = crossHorizontalHeight;
-        this.crossHorizontalPosY = crossHorizontalPosY;
-        this.crossVerticalWidth = crossVerticalWidth;
-        this.crossVerticalPosX = crossVerticalPosX;
-        this.innerCrossHorizontalHeight = innerCrossHorizontalHeight;
-        this.innerCrossHorizontalPosY = innerCrossHorizontalPosY;
-        this.innerCrossVerticalWidth = innerCrossVerticalWidth;
-        this.innerCrossVerticalPosX = innerCrossVerticalPosX;
+        this.horizontalInnerCrossDistanceFromTop = horizontalInnerCrossDistanceFromTop;
+        this.verticalCrossDistanceFromLeft = verticalCrossDistanceFromLeft;
+        this.verticalInnerCrossDistanceFromLeft = verticalInnerCrossDistanceFromLeft;
       }
 }
