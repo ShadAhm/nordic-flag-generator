@@ -1,1 +1,9 @@
 @import url("../node_modules/normalize.css/normalize.css");
+
+body {
+    background-color: #F0F0F0;
+}
+
+div.container {
+    display: flex;
+}

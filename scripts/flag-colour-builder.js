@@ -8,14 +8,6 @@ export class FlagColourBuilder {
     constructor() {
     }
 
-    withColours(backgroundColour, crossColour, innerCrossColour) {
-        this.backgroundColour = backgroundColour;
-        this.crossColour = crossColour;
-        this.innerCrossColour = innerCrossColour;
-
-        return this;
-    }
-
     withTemplate(templateName) {
         switch (templateName) {
             case 'norway':
@@ -55,6 +47,14 @@ export class FlagColourBuilder {
                     break;
                 }
         }
+
+        return this;
+    }
+
+    withUserInputs(userInputs) {
+        this.backgroundColour = userInputs['flag-background-colour'];
+        this.crossColour = userInputs['flag-cross-colour'];
+        this.innerCrossColour = userInputs['flag-innercross-colour'];
 
         return this;
     }

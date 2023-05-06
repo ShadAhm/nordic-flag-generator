@@ -15,19 +15,6 @@ export class FlagSpecBuilder {
 
     constructor() {
     }
-
-    withDefault() {
-        this.aspectRatio = 1.6;
-        this.verticalCrossProportion = 0.125;
-        this.horizontalCrossProportion = 0.2;
-        this.verticalInnerCrossProportion = 0;
-        this.horizontalInnerCrossProportion = 0;
-        this.horizontalCrossDistanceFromTop =  0.4;
-        this.horizontalInnerCrossDistanceFromTop = 0;
-        this.verticalCrossDistanceFromLeft = 0.3125;
-        this.verticalInnerCrossDistanceFromLeft = 0;
-        return this;
-    }
     
     withTemplateName(templateName) {
         switch (templateName) {
@@ -98,6 +85,20 @@ export class FlagSpecBuilder {
                     break;
                 }
         }
+
+        return this;
+    }
+
+    withUserInputs(userInputs) {
+        this.aspectRatio = userInputs['flag-ratio-custom'];
+        this.verticalCrossProportion = userInputs['flag-cross-v-width'];
+        this.horizontalCrossProportion = userInputs['flag-cross-h-height'];
+        this.verticalInnerCrossProportion = userInputs['flag-innercross-v-width'];
+        this.horizontalInnerCrossProportion = userInputs['flag-innercross-h-height'];
+        this.horizontalCrossDistanceFromTop =  userInputs['flag-cross-h-top'];
+        this.horizontalInnerCrossDistanceFromTop = userInputs['flag-innercross-h-top'];
+        this.verticalCrossDistanceFromLeft = userInputs['flag-cross-v-left'];
+        this.verticalInnerCrossDistanceFromLeft = userInputs['flag-innercross-v-left'];
 
         return this;
     }

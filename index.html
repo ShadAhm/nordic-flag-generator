@@ -8,21 +8,23 @@
 
 <body>
     <div class="container">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="diag-flag" version="1.1"
-            width="450" height="327.27272727272725" viewBox="0 0 450 327.27272727272725">
-            <g>
-                <rect id="diag-flag-background" x="0" y="0" width="450" height="327.27272727272725" fill="#b30027"
-                    stroke="none" pointer-events="all" style="fill: rgb(101, 32, 47);"></rect>
-                <rect id="diag-flag-cross-h" x="0" y="35" width="450" height="30" fill="#ffffff" stroke="none"
-                    pointer-events="all" style="fill: rgb(255, 255, 255);"></rect>
-                <rect id="diag-flag-cross-v" x="34" y="0" width="31" height="327.27272727272725" fill="#ffffff"
-                    stroke="none" pointer-events="all" style="fill: rgb(255, 255, 255);"></rect>
-                <rect id="diag-flag-innercross-v" x="39" y="0" width="20" height="327.27272727272725" fill="#071b5c"
-                    stroke="none" pointer-events="all" style="fill: rgb(7, 27, 92);"></rect>
-                <rect id="diag-flag-innercross-h" x="0" y="40" width="450" height="20" fill="#071b5c" stroke="none"
-                    pointer-events="all" style="fill: rgb(7, 27, 92);"></rect>
-            </g>
-        </svg>
+        <div class="diagram-pane">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="diag-flag" version="1.1"
+                width="500" height="312.5" viewBox="0 0 500 312.5">
+                <g>
+                    <rect id="diag-flag-background" x="0" y="0" width="500" height="312.5" fill="#b30027" stroke="none"
+                        pointer-events="all" style="fill: rgb(35, 107, 171);"></rect>
+                    <rect id="diag-flag-cross-h" x="0" y="125" width="500" height="62.5" fill="#ffffff" stroke="none"
+                        pointer-events="all" style="fill: rgb(249, 205, 0);"></rect>
+                    <rect id="diag-flag-cross-v" x="156.25" y="0" width="62.5" height="312.5" fill="#ffffff" stroke="none"
+                        pointer-events="all" style="fill: rgb(249, 205, 0);"></rect>
+                    <rect id="diag-flag-innercross-v" x="0" y="0" width="0" height="312.5" fill="#071b5c" stroke="none"
+                        pointer-events="all" style="fill: rgb(249, 205, 0);"></rect>
+                    <rect id="diag-flag-innercross-h" x="0" y="0" width="500" height="0" fill="#071b5c" stroke="none"
+                        pointer-events="all" style="fill: rgb(249, 205, 0);"></rect>
+                </g>
+            </svg>
+        </div>
         <form>
             <fieldset name="template-settings">
                 <label for="flag-template">Template:</label><br>
@@ -60,17 +62,17 @@
                     value="0.04" step="0.0005">
 
                 <label for="flag-cross-v-left">Vertical cross distance from left</label>
-                <input id="flag-cross-v-left" name="flag-cross-v-left" type="range" min="0.0001" max="1"
-                value="0.04" step="0.0005">
+                <input id="flag-cross-v-left" name="flag-cross-v-left" type="range" min="0.0001" max="1" value="0.04"
+                    step="0.0005">
                 <label for="flag-cross-h-top">Horizontal cross distance from top</label>
-                <input id="flag-cross-h-top" name="flag-cross-h-top" type="range" min="0.0001" max="1"
-                value="0.04" step="0.0005">
+                <input id="flag-cross-h-top" name="flag-cross-h-top" type="range" min="0.0001" max="1" value="0.04"
+                    step="0.0005">
                 <label for="flag-innercross-v-left">Inner vertical cross distance from left</label>
                 <input id="flag-innercross-v-left" name="flag-innercross-v-left" type="range" min="0.0001" max="1"
-                value="0.04" step="0.0005">
+                    value="0.04" step="0.0005">
                 <label for="flag-innercross-h-top">Inner horizontal cross distance from top</label>
                 <input id="flag-innercross-h-top" name="flag-innercross-h-top" type="range" min="0.0001" max="1"
-                value="0.04" step="0.0005">
+                    value="0.04" step="0.0005">
             </fieldset>
 
             <fieldset name="colours-settings">
