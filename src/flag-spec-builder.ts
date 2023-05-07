@@ -1,4 +1,5 @@
 import { FlagSpec } from "./flag-spec.js";
+import { InputForm } from "./input-form.js";
 
 export class FlagSpecBuilder {
     aspectRatio = 0;
@@ -16,7 +17,7 @@ export class FlagSpecBuilder {
     constructor() {
     }
     
-    withTemplateName(templateName) {
+    withTemplateName(templateName: string) {
         switch (templateName) {
             case 'norway':
                 {
@@ -89,16 +90,16 @@ export class FlagSpecBuilder {
         return this;
     }
 
-    withUserInputs(userInputs) {
-        this.aspectRatio = userInputs['flag-ratio-custom'];
-        this.verticalCrossProportion = userInputs['flag-cross-v-width'];
-        this.horizontalCrossProportion = userInputs['flag-cross-h-height'];
-        this.verticalInnerCrossProportion = userInputs['flag-innercross-v-width'];
-        this.horizontalInnerCrossProportion = userInputs['flag-innercross-h-height'];
-        this.horizontalCrossDistanceFromTop =  userInputs['flag-cross-h-top'];
-        this.horizontalInnerCrossDistanceFromTop = userInputs['flag-innercross-h-top'];
-        this.verticalCrossDistanceFromLeft = userInputs['flag-cross-v-left'];
-        this.verticalInnerCrossDistanceFromLeft = userInputs['flag-innercross-v-left'];
+    withUserInputs(userInputs: InputForm) {
+        this.aspectRatio = userInputs.flagRatioCustom;
+        this.verticalCrossProportion = userInputs.flagCrossVWidth;
+        this.horizontalCrossProportion = userInputs.flagCrossHHeight;
+        this.verticalInnerCrossProportion = userInputs.flagInnerCrossVWidth;
+        this.horizontalInnerCrossProportion = userInputs.flagInnerCrossHHeight;
+        this.horizontalCrossDistanceFromTop =  userInputs.flagCrossHTop;
+        this.horizontalInnerCrossDistanceFromTop = userInputs.flagInnerCrossHTop;
+        this.verticalCrossDistanceFromLeft = userInputs.flagCrossVLeft;
+        this.verticalInnerCrossDistanceFromLeft = userInputs.flagInnerCrossVLeft;
 
         return this;
     }

@@ -1,14 +1,15 @@
 import { FlagColour } from './flag-colour.js';
+import { InputForm } from './input-form.js';
 
 export class FlagColourBuilder {
-    backgroundColour;
-    crossColour;
-    innerCrossColour;
+    private backgroundColour: string = '';
+    private crossColour: string = '';
+    private innerCrossColour: string = '';
 
     constructor() {
     }
 
-    withTemplate(templateName) {
+    withTemplate(templateName: string): FlagColourBuilder {
         switch (templateName) {
             case 'norway':
                 {
@@ -51,15 +52,15 @@ export class FlagColourBuilder {
         return this;
     }
 
-    withUserInputs(userInputs) {
-        this.backgroundColour = userInputs['flag-background-colour'];
-        this.crossColour = userInputs['flag-cross-colour'];
-        this.innerCrossColour = userInputs['flag-innercross-colour'];
+    withUserInputs(userInputs: InputForm): FlagColourBuilder {
+        this.backgroundColour = userInputs.flagBackgroundColour;
+        this.crossColour = userInputs.flagCrossColour;
+        this.innerCrossColour = userInputs.flagInnerCrossColour;
 
         return this;
     }
 
-    build() {
+    build(): FlagColour {
         return new FlagColour(this.backgroundColour, this.crossColour, this.innerCrossColour);
     }
 }

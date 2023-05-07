@@ -3,7 +3,7 @@
 <head>
     <title>Nordic Flag Generator</title>
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
-    <script type="module" src="scripts/script.js"></script>
+    <script type="module" src="/src/main.ts"></script>
 </head>
 
 <body>
@@ -27,17 +27,11 @@
         </div>
         <form>
             <fieldset name="template-settings">
-                <label for="flag-template">Template:</label><br>
-                <input type="radio" id="flag-template-sweden" name="flag-template" value="sweden" checked>
-                <label for="flag-template-sweden">Like Sweden</label><br>
-                <input type="radio" id="flag-template-denmark" name="flag-template" value="denmark">
-                <label for="flag-template-denmark">Like Denmark</label><br>
-                <input type="radio" id="flag-template-norway" name="flag-template" value="norway">
-                <label for="flag-template-norway">Like Norway</label><br>
-                <input type="radio" id="flag-template-finland" name="flag-template" value="finland">
-                <label for="flag-template-finland">Like Finland</label><br>
-                <input type="radio" id="flag-template-iceland" name="flag-template" value="iceland">
-                <label for="flag-template-iceland">Like Iceland</label><br>
+                <button type="button" id="flag-template-sweden" name="flag-template-sweden" value="sweden" checked>Like Sweden</button><br>
+                <button type="button" id="flag-template-denmark" name="flag-template-denmark" value="denmark">Like Denmark</button><br>
+                <button type="button" id="flag-template-norway" name="flag-template-norway" value="norway">Like Norway</button><br>
+                <button type="button" id="flag-template-finland" name="flag-template-finland" value="finland">Like Finland</button><br>
+                <button type="button" id="flag-template-iceland" name="flag-template-iceland" value="iceland">Like Iceland</button><br>                             
             </fieldset>
 
             <fieldset name="size-settings">

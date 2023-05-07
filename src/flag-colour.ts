@@ -1,5 +1,5 @@
 export class FlagColour {
-    constructor(backgroundColour, crossColour, innerCrossColour) {
+    constructor(public backgroundColour: string, public crossColour: string, public innerCrossColour: string) {
         this.backgroundColour = backgroundColour;
         this.crossColour = crossColour;
         this.innerCrossColour = innerCrossColour;
