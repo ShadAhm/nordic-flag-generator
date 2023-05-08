@@ -9,6 +9,8 @@ attachEventListeners();
 const flagColorBuilder = new FlagColourBuilder();
 const flagSpecBuilder = new FlagSpecBuilder();
 
+updateFlagFromInput();
+
 function attachEventListeners(): void {
         document.getElementById('flag-template-sweden')?.addEventListener('click', useTemplate as EventListener);
         document.getElementById('flag-template-denmark')?.addEventListener('click', useTemplate as EventListener);
@@ -73,7 +75,6 @@ function updateFlagFromInput() {
         .colourize(flagColour)
         .paint();
 }
-
 
 function setKnobsBasedOnTemplate(flagColour: FlagColour, flagTemplateName: string, flagSpec: FlagSpec) {
     (document.getElementById("flag-background-colour") as HTMLInputElement).value = flagColour.backgroundColour;
