@@ -14,6 +14,9 @@ export class FlagSpecBuilder {
     horizontalCrossDistanceFromTop = 0;
     horizontalInnerCrossDistanceFromTop = 0;
 
+    hasInnerCross: boolean = false;
+    hasEqualCrossWidthAndHeight: boolean = false; 
+
     constructor() {
     }
     
@@ -24,12 +27,14 @@ export class FlagSpecBuilder {
                     this.aspectRatio = 1.375;
                     this.verticalCrossProportion = 0.1818;
                     this.horizontalCrossProportion = 0.25;
-                    this.verticalInnerCrossProportion = 0.0909;
-                    this.horizontalInnerCrossProportion = 0.125;
                     this.horizontalCrossDistanceFromTop = 0.375;
-                    this.horizontalInnerCrossDistanceFromTop = 0.4375;
                     this.verticalCrossDistanceFromLeft = 0.2727;
+                    this.hasInnerCross = true;
+                    this.verticalInnerCrossProportion = 0.0909;
                     this.verticalInnerCrossDistanceFromLeft = 0.3181;
+                    this.horizontalInnerCrossProportion = 0.125;
+                    this.horizontalInnerCrossDistanceFromTop = 0.4375;
+                    this.hasEqualCrossWidthAndHeight = false;
                     break;
                 }
             case 'denmark':
@@ -43,6 +48,8 @@ export class FlagSpecBuilder {
                     this.horizontalInnerCrossDistanceFromTop = 0;
                     this.verticalCrossDistanceFromLeft = 0.3243;
                     this.verticalInnerCrossDistanceFromLeft = 0;
+                    this.hasInnerCross = false;
+                    this.hasEqualCrossWidthAndHeight = false;
                     break;
                 }
             case 'finland':
@@ -56,6 +63,8 @@ export class FlagSpecBuilder {
                     this.horizontalInnerCrossDistanceFromTop = 0;
                     this.verticalCrossDistanceFromLeft = 0.2777;
                     this.verticalInnerCrossDistanceFromLeft = 0;
+                    this.hasInnerCross = false;
+                    this.hasEqualCrossWidthAndHeight = false;
                     break;
                 }
             case 'iceland':
@@ -69,6 +78,8 @@ export class FlagSpecBuilder {
                     this.horizontalInnerCrossDistanceFromTop = 0.4444;
                     this.verticalCrossDistanceFromLeft = 0.28;
                     this.verticalInnerCrossDistanceFromLeft = 0.32;
+                    this.hasInnerCross = true;
+                    this.hasEqualCrossWidthAndHeight = false;
                     break;
                 }
             case 'sweden':
@@ -83,6 +94,8 @@ export class FlagSpecBuilder {
                     this.horizontalInnerCrossDistanceFromTop = 0;
                     this.verticalCrossDistanceFromLeft = 0.3125;
                     this.verticalInnerCrossDistanceFromLeft = 0;
+                    this.hasInnerCross = false;
+                    this.hasEqualCrossWidthAndHeight = false;
                     break;
                 }
         }
@@ -114,7 +127,9 @@ export class FlagSpecBuilder {
             this.horizontalInnerCrossProportion,
             this.horizontalInnerCrossDistanceFromTop,
             this.verticalCrossDistanceFromLeft,
-            this.verticalInnerCrossDistanceFromLeft
+            this.verticalInnerCrossDistanceFromLeft,
+            this.hasInnerCross,
+            this.hasEqualCrossWidthAndHeight
         )
     }
 }

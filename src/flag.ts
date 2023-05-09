@@ -16,6 +16,7 @@ export class Flag {
     public backgroundColour: string = '';
     public crossColour: string = '';
     public innerCrossColour: string = '';
+    public hasInnerCross = false;
 
     constructor() {
     }
@@ -26,13 +27,17 @@ export class Flag {
 
         this.crossVerticalWidth = width * spec.verticalCrossProportion;
         this.crossVerticalPosX = width * spec.verticalCrossDistanceFromLeft;
-        this.crossHorizontalHeight = this.height * spec.horizontalCrossProportion;
-        this.crossHorizontalPosY = this.height  *  spec.horizontalCrossDistanceFromTop;
+        this.crossHorizontalHeight = spec.hasEqualCrossWidthAndHeight ? this.crossVerticalWidth : this.height * spec.horizontalCrossProportion;
+        this.crossHorizontalPosY = this.height * spec.horizontalCrossDistanceFromTop;
+        this.hasInnerCross = spec.hasInnerCross;
 
-        this.innerCrossVerticalWidth = width * spec.verticalInnerCrossProportion;
-        this.innerCrossVerticalPosX = width  *  spec.verticalInnerCrossDistanceFromLeft;
-        this.innerCrossHorizontalHeight = this.height * spec.horizontalInnerCrossProportion;
-        this.innerCrossHorizontalPosY = this.height * spec.horizontalInnerCrossDistanceFromTop;
+        if(spec.hasInnerCross) {
+            this.innerCrossVerticalWidth = width * spec.verticalInnerCrossProportion;
+            this.innerCrossVerticalPosX = width * spec.verticalInnerCrossDistanceFromLeft;
+            this.innerCrossHorizontalHeight = spec.hasEqualCrossWidthAndHeight ? this.innerCrossVerticalWidth : this.height * spec.horizontalInnerCrossProportion;
+            this.innerCrossHorizontalPosY = this.height * spec.horizontalInnerCrossDistanceFromTop;
+        }
+
         return this;
     }
 
@@ -51,15 +56,12 @@ export class Flag {
         const innerCrossVertical = document.getElementById("diag-flag-innercross-v");
         const background = document.getElementById("diag-flag-background");
 
-        if(crossHorizontal == null || crossVertical == null || innerCrossHorizontal == null || innerCrossVertical == null || background == null || flagDiagramSvg == null) {
+        if (crossHorizontal == null || crossVertical == null || innerCrossHorizontal == null || innerCrossVertical == null || background == null || flagDiagramSvg == null) {
             throw new Error("Could not find one of the SVG elements");
         }
-    
+
         crossHorizontal.style.fill = this.crossColour;
         crossVertical.style.fill = this.crossColour;
-        innerCrossHorizontal.style.fill = this.innerCrossColour;
-        innerCrossVertical.style.fill = this.innerCrossColour;
-    
         background.style.fill = this.backgroundColour;
 
         flagDiagramSvg.setAttribute("width", this.width.toString());
@@ -76,13 +78,25 @@ export class Flag {
         crossVertical.setAttribute("height", this.height.toString());
         crossVertical.setAttribute("x", this.crossVerticalPosX.toString());
 
-        innerCrossHorizontal.setAttribute("height", this.innerCrossHorizontalHeight.toString());
-        innerCrossHorizontal.setAttribute("width", this.width.toString());
-        innerCrossHorizontal.setAttribute("y", this.innerCrossHorizontalPosY.toString());
+        if (!this.hasInnerCross) {
+            innerCrossHorizontal.setAttribute("display", "none");
+            innerCrossVertical.setAttribute("display", "none");
+        }
+        else {
+            innerCrossHorizontal.setAttribute("display", "inline");
+            innerCrossVertical.setAttribute("display", "inline");
 
-        innerCrossVertical.setAttribute("width", this.innerCrossVerticalWidth.toString());
-        innerCrossVertical.setAttribute("height", this.height.toString());
-        innerCrossVertical.setAttribute("x", this.innerCrossVerticalPosX.toString());
+            innerCrossHorizontal.style.fill = this.innerCrossColour;
+            innerCrossVertical.style.fill = this.innerCrossColour;
+
+            innerCrossHorizontal.setAttribute("height", this.innerCrossHorizontalHeight.toString());
+            innerCrossHorizontal.setAttribute("width", this.width.toString());
+            innerCrossHorizontal.setAttribute("y", this.innerCrossHorizontalPosY.toString());
+
+            innerCrossVertical.setAttribute("width", this.innerCrossVerticalWidth.toString());
+            innerCrossVertical.setAttribute("height", this.height.toString());
+            innerCrossVertical.setAttribute("x", this.innerCrossVerticalPosX.toString());
+        }
 
         return this;
     }

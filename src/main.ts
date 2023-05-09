@@ -82,6 +82,7 @@ function setKnobsBasedOnTemplate(flagColour: FlagColour, flagTemplateName: strin
     (document.getElementById("flag-innercross-colour") as HTMLInputElement).value = flagColour.innerCrossColour;
 
     setRadioButton('flag-ratio', flagTemplateName);
+    setRadioButton('flag-has-innercross', flagTemplateName == 'iceland' || flagTemplateName == 'norway' ? 'yes' : 'no');
 
     (document.getElementById("flag-ratio-custom") as HTMLInputElement).value = flagSpec.aspectRatio.toString();
     (document.getElementById("flag-cross-v-width") as HTMLInputElement).value = flagSpec.verticalCrossProportion.toString();
