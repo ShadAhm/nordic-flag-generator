@@ -5,9 +5,7 @@ export class FlagSpec {
       public  horizontalCrossProportion: number, 
       public horizontalCrossDistanceFromTop: number, 
       public horizontalInnerCrossProportion: number, 
-      public horizontalInnerCrossDistanceFromTop: number, 
       public verticalCrossDistanceFromLeft: number, 
-      public verticalInnerCrossDistanceFromLeft: number,
       public hasInnerCross: boolean,
       public hasEqualCrossWidthAndHeight: boolean) {
         this.aspectRatio = aspectRatio;
@@ -16,9 +14,7 @@ export class FlagSpec {
         this.horizontalCrossProportion = horizontalCrossProportion;
         this.horizontalCrossDistanceFromTop =  horizontalCrossDistanceFromTop;
         this.horizontalInnerCrossProportion = horizontalInnerCrossProportion;
-        this.horizontalInnerCrossDistanceFromTop = horizontalInnerCrossDistanceFromTop;
         this.verticalCrossDistanceFromLeft = verticalCrossDistanceFromLeft;
-        this.verticalInnerCrossDistanceFromLeft = verticalInnerCrossDistanceFromLeft;
         this.hasInnerCross = hasInnerCross;
         this.hasEqualCrossWidthAndHeight = hasEqualCrossWidthAndHeight;
       }

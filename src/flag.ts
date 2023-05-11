@@ -26,16 +26,17 @@ export class Flag {
         this.height = width / spec.aspectRatio;
 
         this.crossVerticalWidth = width * spec.verticalCrossProportion;
-        this.crossVerticalPosX = width * spec.verticalCrossDistanceFromLeft;
         this.crossHorizontalHeight = spec.hasEqualCrossWidthAndHeight ? this.crossVerticalWidth : this.height * spec.horizontalCrossProportion;
-        this.crossHorizontalPosY = this.height * spec.horizontalCrossDistanceFromTop;
+
+        this.crossVerticalPosX = width * spec.verticalCrossDistanceFromLeft - (this.crossVerticalWidth / 2);
+        this.crossHorizontalPosY = this.height * spec.horizontalCrossDistanceFromTop - (this.crossHorizontalHeight / 2);
         this.hasInnerCross = spec.hasInnerCross;
 
         if(spec.hasInnerCross) {
-            this.innerCrossVerticalWidth = width * spec.verticalInnerCrossProportion;
-            this.innerCrossVerticalPosX = width * spec.verticalInnerCrossDistanceFromLeft;
-            this.innerCrossHorizontalHeight = spec.hasEqualCrossWidthAndHeight ? this.innerCrossVerticalWidth : this.height * spec.horizontalInnerCrossProportion;
-            this.innerCrossHorizontalPosY = this.height * spec.horizontalInnerCrossDistanceFromTop;
+            this.innerCrossVerticalWidth = this.crossVerticalWidth * spec.verticalInnerCrossProportion;
+            this.innerCrossVerticalPosX = width * spec.verticalCrossDistanceFromLeft - (this.innerCrossVerticalWidth / 2);
+            this.innerCrossHorizontalHeight = spec.hasEqualCrossWidthAndHeight ? this.innerCrossVerticalWidth : this.crossHorizontalHeight * spec.horizontalInnerCrossProportion;
+            this.innerCrossHorizontalPosY = this.height * spec.horizontalCrossDistanceFromTop - (this.innerCrossHorizontalHeight / 2);
         }
 
         return this;

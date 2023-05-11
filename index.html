@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
 
 <head>
     <title>Nordic Flag Generator</title>
@@ -40,8 +40,16 @@
             </fieldset>
 
             <fieldset name="size-settings">
-                <label for="flag-width">Width:</label>
-                <input id="flag-width" name="flag-width" type="range" min="50" max="1000" value="450" step="50">
+                <div>
+                    <label for="flag-width">Width:</label>
+                    <input id="flag-width" name="flag-width" type="range" min="50" max="1000" step="50" value="800">
+                    <input type="number" id="flag-width-number" name="flag-width-number" value="800" readonly>
+                </div>
+                <div>
+                    <label for="flag-height">Height:</label>
+                    <input id="flag-height" name="flag-height" type="range" min="50" max="1000" step="50" value="400">
+                    <input type="number" id="flag-height-number" name="flag-height" value="400" readonly>
+                </div>
             </fieldset>
 
             <fieldset name="cross-settings">
@@ -60,26 +68,19 @@
                     step="0.0005">
             </fieldset>
 
-            <fieldset name="has-innercross-settings">
+            <fieldset name="innercross-settings">
                 <label for="flag-has-innercross">Has inner cross:</label><br>
                 <input type="radio" id="flag-has-innercross-yes" name="flag-has-innercross" value="yes">
                 <label for="flag-has-innercross-yes">Yes (like Norway and Iceland)</label><br>
                 <input type="radio" id="flag-has-innercross-no" name="flag-has-innercross" value="no" checked>
                 <label for="flag-has-innercrosss-no">No (like Sweden, Finland, and Denmark)</label><br>
 
-                <label for="flag-innercross-v-left">Inner vertical cross distance from left</label>
-                <input id="flag-innercross-v-left" name="flag-innercross-v-left" type="range" min="0.0001" max="1"
-                    value="0.3" step="0.0005">
-                <label for="flag-innercross-h-top">Inner horizontal cross distance from top</label>
-                <input id="flag-innercross-h-top" name="flag-innercross-h-top" type="range" min="0.0001" max="1"
-                    value="0.45" step="0.0005">
-
                 <label for="flag-innercross-v-width">Inner vertical cross width ratio:</label>
-                <input id="flag-innercross-v-width" name="flag-innercross-v-width" type="range" min="0.0001" max="1"
-                    value="0.09" step="0.0005">
+                <input id="flag-innercross-v-width" name="flag-innercross-v-width" type="range" min="0" max="1"
+                    value="0.09" step="0.1">
                 <label for="flag-innercross-h-height">Inner horizontal cross height ratio:</label>
-                <input id="flag-innercross-h-height" name="flag-innercross-h-height" type="range" min="0.0001" max="1"
-                    value="0.10" step="0.0005">
+                <input id="flag-innercross-h-height" name="flag-innercross-h-height" type="range" min="0" max="1"
+                    value="0.10" step="0.1">
             </fieldset>
 
             <fieldset name="colours-settings">
@@ -92,18 +93,31 @@
             </fieldset>
 
             <fieldset name="ratio-settings">
-                <label for="flag-ratio">Aspect ratio:</label><br>
-                <input type="radio" id="flag-ratio-sweden" name="flag-ratio" value="sweden" checked>
-                <label for="flag-ratio-sweden">Like Sweden</label><br>
-                <input type="radio" id="flag-ratio-denmark" name="flag-ratio" value="denmark">
-                <label for="flag-ratio-denmark">Like Denmark</label><br>
-                <input type="radio" id="flag-ratio-norway" name="flag-ratio" value="norway">
-                <label for="flag-ratio-norway">Like Norway</label><br>
-                <input type="radio" id="flag-ratio-finland" name="flag-ratio" value="finland">
-                <label for="flag-ratio-finland">Like Finland</label><br>
-                <input type="radio" id="flag-ratio-iceland" name="flag-ratio" value="iceland">
-                <label for="flag-ratio-iceland">Like Iceland</label><br>
-                <label for="flag-ratio-custom">Custom:</label>
+                <label for="flag-ratio-custom">Aspect ratio:</label>
+                <div class="aspect-ratio-templates">
+                    <button type="button" id="flag-aspect-ratio-like-sweden" name="flag-template-sweden" value="sweden" data-is-ratio-button="true"
+                        checked>
+                        <span class="aspect-ratio-label">5:8 (1.6)</span>
+                        <span class="aspect-ratio-like-label">Like Sweden</span>
+                    </button>
+                    <button type="button" id="flag-aspect-ratio-like-denmark" name="flag-template-denmark" value="denmark">
+                        <span class="aspect-ratio-label">28:37 (1.321)</span>
+                        <span class="aspect-ratio-like-label">Like Denmark</span>
+                    </button>
+                    <button type="button" id="flag-aspect-ratio-like-norway" name="flag-template-norway" value="norway">
+                        <span class="aspect-ratio-label">8:11 (1.375)</span>
+                        <span class="aspect-ratio-like-label">Like Norway</span>
+                    </button>
+                    <button type="button" id="flag-aspect-ratio-like-finland" name="flag-template-finland" value="finland">
+                        <span class="aspect-ratio-label">11:18 (1.636)</span>
+                        <span class="aspect-ratio-like-label">Like Finland</span>
+                    </button>
+                    <button type="button" id="flag-aspect-ratio-like-iceland" name="flag-template-iceland" value="iceland">
+                        <span class="aspect-ratio-label">18:25 (1.389)</span>
+                        <span class="aspect-ratio-like-label">Like Iceland</span>
+                    </button>
+                </div>
+
                 <input id="flag-ratio-custom" name="flag-ratio-custom" type="range" min="1" max="2" value="2"
                     step="0.1">
             </fieldset>

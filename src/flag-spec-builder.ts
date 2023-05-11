@@ -7,12 +7,10 @@ export class FlagSpecBuilder {
     verticalCrossProportion = 0; // the proportion of the width of the flag that the vertical cross takes up
     verticalInnerCrossProportion = 0;
     verticalCrossDistanceFromLeft = 0;
-    verticalInnerCrossDistanceFromLeft = 0;
 
     horizontalCrossProportion = 0; // the proportion of the height of the flag that the horizontal cross takes up
     horizontalInnerCrossProportion = 0;
     horizontalCrossDistanceFromTop = 0;
-    horizontalInnerCrossDistanceFromTop = 0;
 
     hasInnerCross: boolean = false;
     hasEqualCrossWidthAndHeight: boolean = false; 
@@ -27,13 +25,11 @@ export class FlagSpecBuilder {
                     this.aspectRatio = 1.375;
                     this.verticalCrossProportion = 0.1818;
                     this.horizontalCrossProportion = 0.25;
-                    this.horizontalCrossDistanceFromTop = 0.375;
-                    this.verticalCrossDistanceFromLeft = 0.2727;
+                    this.horizontalCrossDistanceFromTop = 0.5;
+                    this.verticalCrossDistanceFromLeft = 0.3636;
                     this.hasInnerCross = true;
-                    this.verticalInnerCrossProportion = 0.0909;
-                    this.verticalInnerCrossDistanceFromLeft = 0.3181;
-                    this.horizontalInnerCrossProportion = 0.125;
-                    this.horizontalInnerCrossDistanceFromTop = 0.4375;
+                    this.verticalInnerCrossProportion = 0.5;
+                    this.horizontalInnerCrossProportion = 0.5;
                     this.hasEqualCrossWidthAndHeight = false;
                     break;
                 }
@@ -44,10 +40,8 @@ export class FlagSpecBuilder {
                     this.horizontalCrossProportion = 0.1428;
                     this.verticalInnerCrossProportion = 0;
                     this.horizontalInnerCrossProportion = 0;
-                    this.horizontalCrossDistanceFromTop = 0.4285;
-                    this.horizontalInnerCrossDistanceFromTop = 0;
-                    this.verticalCrossDistanceFromLeft = 0.3243;
-                    this.verticalInnerCrossDistanceFromLeft = 0;
+                    this.horizontalCrossDistanceFromTop = 0.5;
+                    this.verticalCrossDistanceFromLeft = 0.3783;
                     this.hasInnerCross = false;
                     this.hasEqualCrossWidthAndHeight = false;
                     break;
@@ -59,10 +53,8 @@ export class FlagSpecBuilder {
                     this.horizontalCrossProportion = 0.2727;
                     this.verticalInnerCrossProportion = 0;
                     this.horizontalInnerCrossProportion = 0;
-                    this.horizontalCrossDistanceFromTop = 0.3636;
-                    this.horizontalInnerCrossDistanceFromTop = 0;
-                    this.verticalCrossDistanceFromLeft = 0.2777;
-                    this.verticalInnerCrossDistanceFromLeft = 0;
+                    this.horizontalCrossDistanceFromTop = 0.5;
+                    this.verticalCrossDistanceFromLeft = 0.3055;
                     this.hasInnerCross = false;
                     this.hasEqualCrossWidthAndHeight = false;
                     break;
@@ -72,12 +64,10 @@ export class FlagSpecBuilder {
                     this.aspectRatio = 1.389;
                     this.verticalCrossProportion = 0.16;
                     this.horizontalCrossProportion = 0.2222;
-                    this.verticalInnerCrossProportion = 0.08;
-                    this.horizontalInnerCrossProportion = 0.1111;
-                    this.horizontalCrossDistanceFromTop =  0.3888;
-                    this.horizontalInnerCrossDistanceFromTop = 0.4444;
-                    this.verticalCrossDistanceFromLeft = 0.28;
-                    this.verticalInnerCrossDistanceFromLeft = 0.32;
+                    this.verticalInnerCrossProportion = 0.5;
+                    this.horizontalInnerCrossProportion = 0.5;
+                    this.horizontalCrossDistanceFromTop = 0.5;
+                    this.verticalCrossDistanceFromLeft = 0.32;
                     this.hasInnerCross = true;
                     this.hasEqualCrossWidthAndHeight = false;
                     break;
@@ -90,10 +80,8 @@ export class FlagSpecBuilder {
                     this.horizontalCrossProportion = 0.2;
                     this.verticalInnerCrossProportion = 0;
                     this.horizontalInnerCrossProportion = 0;
-                    this.horizontalCrossDistanceFromTop =  0.4;
-                    this.horizontalInnerCrossDistanceFromTop = 0;
-                    this.verticalCrossDistanceFromLeft = 0.3125;
-                    this.verticalInnerCrossDistanceFromLeft = 0;
+                    this.horizontalCrossDistanceFromTop =  0.5;
+                    this.verticalCrossDistanceFromLeft = 0.375;
                     this.hasInnerCross = false;
                     this.hasEqualCrossWidthAndHeight = false;
                     break;
@@ -110,9 +98,7 @@ export class FlagSpecBuilder {
         this.verticalInnerCrossProportion = userInputs.flagInnerCrossVWidth;
         this.horizontalInnerCrossProportion = userInputs.flagInnerCrossHHeight;
         this.horizontalCrossDistanceFromTop =  userInputs.flagCrossHTop;
-        this.horizontalInnerCrossDistanceFromTop = userInputs.flagInnerCrossHTop;
         this.verticalCrossDistanceFromLeft = userInputs.flagCrossVLeft;
-        this.verticalInnerCrossDistanceFromLeft = userInputs.flagInnerCrossVLeft;
 
         return this;
     }
@@ -125,9 +111,7 @@ export class FlagSpecBuilder {
             this.horizontalCrossProportion,
             this.horizontalCrossDistanceFromTop,
             this.horizontalInnerCrossProportion,
-            this.horizontalInnerCrossDistanceFromTop,
             this.verticalCrossDistanceFromLeft,
-            this.verticalInnerCrossDistanceFromLeft,
             this.hasInnerCross,
             this.hasEqualCrossWidthAndHeight
         )

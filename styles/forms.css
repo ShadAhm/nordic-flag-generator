@@ -2,3 +2,34 @@ fieldset[name="cross-settings"] {
     display: flex;
     flex-direction: column;
 }
+
+fieldset[name="size-settings"] {
+    display: flex;
+    gap: 1rem;
+}
+
+fieldset[name="size-settings"] div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+div.aspect-ratio-templates {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+div.aspect-ratio-templates button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.aspect-ratio-templates button span.aspect-ratio-like-label {
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+

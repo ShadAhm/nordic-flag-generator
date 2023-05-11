@@ -8,8 +8,6 @@ export class InputForm {
     flagInnerCrossNo: string = '';
     flagInnerCrossColour: string = '';
     flagInnerCrossHHeight: number = 0;
-    flagInnerCrossHTop: number = 0;
-    flagInnerCrossVLeft: number = 0;
     flagInnerCrossVWidth: number = 0;
     flagRatioCustom: number = 0;
     flagRatioNorway: string = '';
@@ -26,8 +24,6 @@ export class InputForm {
       this.flagInnerCrossNo = formValues['flag-inner-cross-no'] as string;
       this.flagInnerCrossColour = formValues['flag-innercross-colour'] as string;
       this.flagInnerCrossHHeight = Number(formValues['flag-innercross-h-height']);
-      this.flagInnerCrossHTop = Number(formValues['flag-innercross-h-top']);
-      this.flagInnerCrossVLeft = Number(formValues['flag-innercross-v-left']);
       this.flagInnerCrossVWidth = Number(formValues['flag-innercross-v-width']);
       this.flagRatioCustom = Number(formValues['flag-ratio-custom']);
       this.flagRatioNorway = formValues['flag-ratio-norway'] as string;
