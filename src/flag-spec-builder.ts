@@ -103,6 +103,39 @@ export class FlagSpecBuilder {
         return this;
     }
 
+    withRatio(ratio: number) {
+        this.aspectRatio = ratio;
+        return this;
+    }
+
+    withRatioTemplate(ratioTemplateName: string) {
+        switch (ratioTemplateName) {
+            case 'norway': {
+                this.aspectRatio = 1.375;
+                break;
+            }
+            case 'denmark': {
+                this.aspectRatio = 1.321;
+                break;
+            }
+            case 'finland': {
+                this.aspectRatio = 1.636;
+                break;
+            }
+            case 'iceland': {
+                this.aspectRatio = 1.389;
+                break;
+            }
+            case 'sweden':
+            default: {
+                this.aspectRatio = 1.6;
+                break;
+            }
+        }
+
+        return this;
+    }
+
     build() {
         return new FlagSpec(
             this.aspectRatio,

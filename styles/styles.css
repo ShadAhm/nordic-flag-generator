@@ -2,10 +2,32 @@
 @import url("forms.css");
 
 body {
-    background-color: #F0F0F0;
     font-family:Roboto, Helvetica, sans-serif;
+    color: rgb(29, 49, 49);
+    padding: 1rem;
 }
 
 div.container {
     display: flex;
+    gap: 1rem;
+}   
+
+.diagram-pane {
+    flex-grow: 6;
+    display: flex;
+    align-content: stretch;
+    justify-content: center;
+    align-items: center;
+    background-image: radial-gradient(#f9ff00 2px, transparent 2px);
+    background-size: 23px 23px;
+    background-color: #edfbff;
+    border-radius: 2%;
+}
+
+form {
+    flex-grow: 1;
+}
+
+.height-width-sliders {
+    display: none;
 }
