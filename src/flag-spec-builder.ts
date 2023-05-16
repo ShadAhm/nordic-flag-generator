@@ -93,6 +93,7 @@ export class FlagSpecBuilder {
 
     withUserInputs(userInputs: InputForm) {
         this.aspectRatio = userInputs.flagRatioCustom;
+        this.hasInnerCross = userInputs.flagHasInnerCross;
         this.verticalCrossProportion = userInputs.flagCrossVWidth;
         this.horizontalCrossProportion = userInputs.flagCrossHHeight;
         this.verticalInnerCrossProportion = userInputs.flagInnerCrossVWidth;
