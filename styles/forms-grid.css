@@ -5,30 +5,26 @@
     grid-row-gap: 1rem;
 }
 
-.div1 {
-    grid-area: 1 / 1 / 2 / 2;
-}
-
-.div2 {
+fieldset[name="template-settings"]{
     grid-area: 1 / 1 / 2 / 3;
 }
 
-.div3 {
+fieldset[name="size-settings"] {
     grid-area: 2 / 1 / 3 / 2;
 }
 
-.div4 {
+fieldset[name="aspect-ratio-settings"] {
     grid-area: 2 / 2 / 3 / 3;
 }
 
-.div5 {
+fieldset[name="colours-settings"] {
     grid-area: 3 / 1 / 4 / 3;
 }
 
-.div6 {
+fieldset[name="cross-settings"] {
     grid-area: 4 / 1 / 5 / 2;
 }
 
-.div7 {
+fieldset[name="innercross-settings"] {
     grid-area: 4 / 2 / 5 / 3;
 }

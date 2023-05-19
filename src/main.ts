@@ -80,8 +80,7 @@ function updateFlagRatioFromButton(e: PointerEvent) {
         .colourize(flagColour)
         .paint();
 
-    (document.getElementById("flag-height") as HTMLInputElement).value = flag.height.toString();
-    (document.getElementById("flag-height-number") as HTMLInputElement).value = flag.height.toString();
+    (document.getElementById("flag-height-number-label") as HTMLInputElement).innerText = flag.height.toString();
 }
 
 function updateFlagFromInput() {
@@ -95,10 +94,12 @@ function updateFlagFromInput() {
         .withUserInputs(userInputs)
         .build();
 
-    new Flag()
+    const flag = new Flag()
         .drawFromSpec(userInputs.flagWidth, flagSpec)
         .colourize(flagColour)
         .paint();
+
+    (document.getElementById("flag-height-number-label") as HTMLInputElement).innerText = flag.height.toString();
 }
 
 function setKnobsBasedOnTemplate(flagColour: FlagColour, flagTemplateName: string, flagSpec: FlagSpec, flag: Flag) {

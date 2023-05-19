@@ -3,7 +3,7 @@
 <head>
     <title>Nordic Flag Generator</title>
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
-    <script type="module" src="/src/main.ts"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
@@ -35,164 +35,170 @@
         </div>
         <form>
             <div class="parent">
-                <div class="div2">
-                    <fieldset name="template-settings">
-                        <legend>Template</legend>
-                        <span>Use a design from a neighbouring country as a starting template for yours.</span>
-                        <div class="use-template-buttons">
-                            <button type="button" id="flag-template-sweden" name="flag-template-sweden"
-                                value="sweden">Like
-                                Sweden</button><br>
-                            <button type="button" id="flag-template-denmark" name="flag-template-denmark"
-                                value="denmark">Like
-                                Denmark</button><br>
-                            <button type="button" id="flag-template-norway" name="flag-template-norway"
-                                value="norway">Like
-                                Norway</button><br>
-                            <button type="button" id="flag-template-finland" name="flag-template-finland"
-                                value="finland">Like
-                                Finland</button><br>
-                            <button type="button" id="flag-template-iceland" name="flag-template-iceland"
-                                value="iceland">Like
-                                Iceland</button><br>
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="div3">
-                    <fieldset name="size-settings">
-                        <legend>Dimensions</legend>
-                        <div id="height-width-sliders">
-                            <div>
-                                <label for="flag-width">Width:</label>
-                                <div class="slider-input-group">
-                                    <input id="flag-width" name="flag-width" type="range" min="50" max="1000" step="50"
-                                        value="800">
-                                    <input type="number" id="flag-width-number" name="flag-width-number" value="800"
-                                        readonly>
-                                </div>
-                            </div>
-                            <div>
-                                <label for="flag-height">Height:</label>
-                                <input id="flag-height" name="flag-height" type="range" min="50" max="1000" step="50"
-                                    value="400">
-                                <input type="number" id="flag-height-number" name="flag-height" value="400" readonly>
+                <fieldset name="template-settings">
+                    <legend>Template</legend>
+                    <span>Use a design from a neighbouring country as a starting template for yours.</span>
+                    <div class="use-template-buttons">
+                        <button type="button" id="flag-template-sweden" name="flag-template-sweden" value="sweden">Like
+                            Sweden</button><br>
+                        <button type="button" id="flag-template-denmark" name="flag-template-denmark"
+                            value="denmark">Like
+                            Denmark</button><br>
+                        <button type="button" id="flag-template-norway" name="flag-template-norway" value="norway">Like
+                            Norway</button><br>
+                        <button type="button" id="flag-template-finland" name="flag-template-finland"
+                            value="finland">Like
+                            Finland</button><br>
+                        <button type="button" id="flag-template-iceland" name="flag-template-iceland"
+                            value="iceland">Like
+                            Iceland</button><br>
+                    </div>
+                </fieldset>
+                <fieldset name="size-settings">
+                    <legend>Dimensions</legend>
+                    <div id="height-width-sliders">
+                        <div class="form-group">
+                            <label for="flag-width">Width:</label>
+                            <div class="form-range-picker">
+                                <input id="flag-width" name="flag-width" type="range" min="50" max="1000" step="50"
+                                    value="800" />
+                                <input type="number" id="flag-width-number" name="flag-width-number" value="800"
+                                    readonly />
                             </div>
                         </div>
-                    </fieldset>
-                </div>
-                <div class="div4">
-                    <fieldset name="aspect-ratio">
-                        <legend>Aspect Ratio</legend>
-                        <div class="btn-group">
-                            <input type="radio" id="flag-aspect-ratio-like-sweden" name="flag-aspect-ratio"
-                                value="sweden">
-                            <label for="flag-aspect-ratio-like-sweden">
-                                <span class="aspect-ratio-label">
-                                    5:8 (1.6)
-                                </span>
-                                <span class="aspect-ratio-like-label">
-                                    Like Sweden
-                                </span>
+                        <div class="form-group">
+                            <label for="flag-height-number-label">
+                                Height:
                             </label>
-                            <input type="radio" id="flag-aspect-ratio-like-denmark" name="flag-aspect-ratio"
-                                value="denmark">
-                            <label for="flag-aspect-ratio-like-denmark">
-                                <span class="aspect-ratio-label">
-                                    28:37 (1.321)
-                                </span>
-                                <span class="aspect-ratio-like-label">
-                                    Like Denmark
-                                </span>
-                            </label>
-                            <input type="radio" id="flag-aspect-ratio-like-norway" name="flag-aspect-ratio"
-                                value="norway">
-                            <label for="flag-aspect-ratio-like-norway">
-                                <span class="aspect-ratio-label">
-                                    8:11 (1.375)
-                                </span>
-                                <span class="aspect-ratio-like-label">
-                                    Like Norway
-                                </span>
-                            </label>
-                            <input type="radio" id="flag-aspect-ratio-like-finland" name="flag-aspect-ratio"
-                                value="finland">
-                            <label for="flag-aspect-ratio-like-finland">
-                                <span class="aspect-ratio-label">
-                                    11:18 (1.636)
-                                </span>
-                                <span class="aspect-ratio-like-label">
-                                    Like Finland
-                                </span>
-                            </label>
+                            <span id="flag-height-number-label"></span>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset name="aspect-ratio-settings">
+                    <legend>Aspect Ratio</legend>
+                    <div class="btn-group">
+                        <input type="radio" id="flag-aspect-ratio-like-sweden" name="flag-aspect-ratio" value="sweden">
+                        <label for="flag-aspect-ratio-like-sweden">
+                            <span class="aspect-ratio-label">
+                                5:8 (1.6)
+                            </span>
+                            <span class="aspect-ratio-like-label">
+                                like Sweden
+                            </span>
+                        </label>
+                        <input type="radio" id="flag-aspect-ratio-like-denmark" name="flag-aspect-ratio"
+                            value="denmark">
+                        <label for="flag-aspect-ratio-like-denmark">
+                            <span class="aspect-ratio-label">
+                                28:37 (1.321)
+                            </span>
+                            <span class="aspect-ratio-like-label">
+                                like Denmark
+                            </span>
+                        </label>
+                        <input type="radio" id="flag-aspect-ratio-like-norway" name="flag-aspect-ratio" value="norway">
+                        <label for="flag-aspect-ratio-like-norway">
+                            <span class="aspect-ratio-label">
+                                8:11 (1.375)
+                            </span>
+                            <span class="aspect-ratio-like-label">
+                                like Norway
+                            </span>
+                        </label>
+                        <input type="radio" id="flag-aspect-ratio-like-finland" name="flag-aspect-ratio"
+                            value="finland">
+                        <label for="flag-aspect-ratio-like-finland">
+                            <span class="aspect-ratio-label">
+                                11:18 (1.636)
+                            </span>
+                            <span class="aspect-ratio-like-label">
+                                like Finland
+                            </span>
+                        </label>
 
-                            <input type="radio" id="flag-aspect-ratio-like-iceland" name="flag-aspect-ratio"
-                                value="iceland">
-                            <label for="flag-aspect-ratio-like-iceland">
-                                <span class="aspect-ratio-label">
-                                    8:25 (1.389)
-                                </span>
-                                <span class="aspect-ratio-like-label">
-                                    Like Iceland
-                                </span>
-                            </label>
-                        </div>
-                        <label for="flag-ratio-custom">Custom:</label>
-                        <div class="slider-input-group">
-                            <input id="flag-ratio-custom" name="flag-ratio-custom" type="range" min="1" max="2"
-                                value="2" step="0.1">
-                            <input type="number" id="flag-ratio-custom-number" name="flag-ratio-custom-number" value="2"
-                                readonly>
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="div5">
-                    <fieldset name="colours-settings">
-                        <legend>Colours</legend>
-                        <label for="flag-background-colour">Background colour:</label>
-                        <input type="color" id="flag-background-colour" name="flag-backg round-colour" value="#FFD100">
-                        <label for="flag-cross-colour">Cross colour:</label>
-                        <input type="color" id="flag-cross-colour" name="flag-cross-colour" value="#ffffff">
-                        <label for="flag-innercross-colour">Inner cross colour:</label>
-                        <input type="color" id="flag-innercross-colour" name="flag-innercross-colour" value="#0033A0">
-                    </fieldset>
-                </div>
-                <div class="div6">
-                    <fieldset name="cross-settings">
-                        <legend>Cross settings</legend>
-                        <label for="flag-cross-v-width">Vertical cross width ratio:</label>
+                        <input type="radio" id="flag-aspect-ratio-like-iceland" name="flag-aspect-ratio"
+                            value="iceland">
+                        <label for="flag-aspect-ratio-like-iceland">
+                            <span class="aspect-ratio-label">
+                                8:25 (1.389)
+                            </span>
+                            <span class="aspect-ratio-like-label">
+                                like Iceland
+                            </span>
+                        </label>
+                    </div>
+                    <label for="flag-ratio-custom">Custom:</label>
+                    <div class="form-range-picker">
+                        <input id="flag-ratio-custom" name="flag-ratio-custom" type="range" min="1" max="2" value="2"
+                            step="0.1">
+                        <input type="number" id="flag-ratio-custom-number" name="flag-ratio-custom-number" value="2"
+                            readonly>
+                    </div>
+                </fieldset>
+                <fieldset name="colours-settings">
+                    <legend>Colours</legend>
+                    <label for="flag-background-colour">Background colour:</label>
+                    <input type="color" id="flag-background-colour" name="flag-backg round-colour" value="#FFD100">
+                    <label for="flag-cross-colour">Cross colour:</label>
+                    <input type="color" id="flag-cross-colour" name="flag-cross-colour" value="#ffffff">
+                    <label for="flag-innercross-colour">Inner cross colour:</label>
+                    <input type="color" id="flag-innercross-colour" name="flag-innercross-colour" value="#0033A0">
+                </fieldset>
+                <fieldset name="cross-settings">
+                    <legend>Cross settings</legend>
+                    <label for="flag-cross-v-width">Vertical cross width ratio:</label>
+                    <div class="form-range-picker">
                         <input id="flag-cross-v-width" name="flag-cross-v-width" type="range" min="0.0001" max="1"
                             value="0.11" step="0.0005">
-                        <label for="flag-cross-h-height">Horizontal cross height ratio:</label>
+                        <input id="flag-cross-v-width-number" name="flag-cross-v-width-number" type="number"
+                            min="0.0001" max="1" value="0.11" step="0.0005">
+                    </div>
+
+                    <label for="flag-cross-h-height">Horizontal cross height ratio:</label>
+                    <div class="form-range-picker">
                         <input id="flag-cross-h-height" name="flag-cross-h-height" type="range" min="0.0001" max="1"
                             value="0.22" step="0.0005">
-                        <label for="flag-cross-v-left">Vertical cross distance from left</label>
+                        <input id="flag-cross-h-height-number" name="flag-cross-h-height-number" type="number"
+                            min="0.0001" max="1" value="0.22" step="0.0005">
+                    </div>
+
+                    <label for="flag-cross-v-left">Vertical cross distance from left</label>
+
+                    <div class="form-range-picker">
                         <input id="flag-cross-v-left" name="flag-cross-v-left" type="range" min="0.0001" max="1"
                             value="0.3" step="0.0005">
-                        <label for="flag-cross-h-top">Horizontal cross distance from top</label>
+                        <input id="flag-cross-v-left-number" name="flag-cross-v-left-number" type="number" min="0.0001"
+                            max="1" value="0.3" step="0.0005">
+                    </div>
+
+                    <label for="flag-cross-h-top">Horizontal cross distance from top</label>
+                    <div class="form-range-picker">
                         <input id="flag-cross-h-top" name="flag-cross-h-top" type="range" min="0.0001" max="1"
                             value="0.5" step="0.0005">
-                    </fieldset>
-                </div>
-                <div class="div7">
-                    <fieldset name="innercross-settings">
-                        <legend>Inner cross</legend>
+                        <input id="flag-cross-h-top-number" name="flag-cross-h-top-number" type="number" min="0.0001"
+                            max="1" value="0.5" step="0.0005">
+                    </div>
+                </fieldset>
+                <fieldset name="innercross-settings">
+                    <legend>Inner cross</legend>
 
-                        <label for="flag-has-innercross">Has inner cross:</label><br>
-                        <input type="radio" id="flag-has-innercross-yes" name="flag-has-innercross" value="yes" checked>
-                        <label for="flag-has-innercross-yes">Yes (like Norway and Iceland)</label><br>
-                        <input type="radio" id="flag-has-innercross-no" name="flag-has-innercross" value="no">
-                        <label for="flag-has-innercrosss-no">No (like Sweden, Finland, and Denmark)</label><br>
+                    <label for="flag-has-innercross">Has inner cross:</label><br>
+                    <input type="radio" id="flag-has-innercross-yes" name="flag-has-innercross" value="yes" checked>
+                    <label for="flag-has-innercross-yes">Yes (like Norway and Iceland)</label><br>
+                    <input type="radio" id="flag-has-innercross-no" name="flag-has-innercross" value="no">
+                    <label for="flag-has-innercrosss-no">No (like Sweden, Finland, and Denmark)</label><br>
 
-                        <label for="flag-innercross-v-width">Inner vertical cross width ratio:</label>
-                        <input id="flag-innercross-v-width" name="flag-innercross-v-width" type="range" min="0" max="1"
-                            value="0.5" step="0.1">
-                        <label for="flag-innercross-h-height">Inner horizontal cross height ratio:</label>
-                        <input id="flag-innercross-h-height" name="flag-innercross-h-height" type="range" min="0"
-                            max="1" value="0.5" step="0.1">
-                    </fieldset>
-                </div>
+                    <label for="flag-innercross-v-width">Inner vertical cross width ratio:</label>
+                    <input id="flag-innercross-v-width" name="flag-innercross-v-width" type="range" min="0" max="1"
+                        value="0.5" step="0.1">
+                    <label for="flag-innercross-h-height">Inner horizontal cross height ratio:</label>
+                    <input id="flag-innercross-h-height" name="flag-innercross-h-height" type="range" min="0" max="1"
+                        value="0.5" step="0.1">
+                </fieldset>
             </div>
         </form>
     </div>
+    <script type="module" src="/src/main.ts"></script>
+</body>
 
 </html>
