@@ -188,12 +188,24 @@
                     <input type="radio" id="flag-has-innercross-no" name="flag-has-innercross" value="no">
                     <label for="flag-has-innercrosss-no">No (like Sweden, Finland, and Denmark)</label><br>
 
-                    <label for="flag-innercross-v-width">Inner vertical cross width ratio:</label>
-                    <input id="flag-innercross-v-width" name="flag-innercross-v-width" type="range" min="0" max="1"
-                        value="0.5" step="0.1">
-                    <label for="flag-innercross-h-height">Inner horizontal cross height ratio:</label>
-                    <input id="flag-innercross-h-height" name="flag-innercross-h-height" type="range" min="0" max="1"
-                        value="0.5" step="0.1">
+                    <div class="form-group">
+                        <label for="flag-innercross-v-width">Inner vertical cross width ratio:</label>
+                        <div class="form-range-picker">
+                            <input id="flag-innercross-v-width" name="flag-innercross-v-width" type="range" min="0"
+                                max="1" value="0.5" step="0.1">
+                            <input id="flag-innercross-v-width-number" name="flag-innercross-v-width-number"
+                                type="number" min="0" max="1" value="0.5" step="0.1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="flag-innercross-h-height">Inner horizontal cross height ratio:</label>
+                        <div class="form-range-picker">
+                            <input id="flag-innercross-h-height" name="flag-innercross-h-height" type="range" min="0"
+                                max="1" value="0.5" step="0.1">
+                            <input id="flag-innercross-h-height-number" name="flag-innercross-h-height-number"
+                                type="number" min="0" max="1" value="0.5" step="0.1">
+                        </div>
+                    </div>
                 </fieldset>
             </div>
         </form>
