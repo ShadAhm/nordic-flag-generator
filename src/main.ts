@@ -55,7 +55,7 @@ function useTemplate(e: PointerEvent) {
         .colourize(flagColour)
         .paint();
 
-    setKnobsBasedOnTemplate(flagColour, inputFlagTemplateName, flagSpec, flag);
+    setKnobsBasedOnTemplate(flagColour, flagSpec, flag);
 }
 
 function updateFlagRatioFromButton(e: PointerEvent) {
@@ -80,7 +80,7 @@ function updateFlagRatioFromButton(e: PointerEvent) {
         .colourize(flagColour)
         .paint();
 
-    (document.getElementById("flag-height-number-label") as HTMLInputElement).innerText = flag.height.toString();
+    setKnobsBasedOnTemplate(flagColour, flagSpec, flag);
 }
 
 function updateFlagFromInput() {
@@ -99,31 +99,61 @@ function updateFlagFromInput() {
         .colourize(flagColour)
         .paint();
 
-    (document.getElementById("flag-height-number-label") as HTMLInputElement).innerText = flag.height.toString();
+    setKnobsBasedOnTemplate(flagColour, flagSpec, flag);
 }
 
-function setKnobsBasedOnTemplate(flagColour: FlagColour, flagTemplateName: string, flagSpec: FlagSpec, flag: Flag) {
+function setKnobsBasedOnTemplate(flagColour: FlagColour, flagSpec: FlagSpec, flag: Flag) {
     (document.getElementById("flag-background-colour") as HTMLInputElement).value = flagColour.backgroundColour;
     (document.getElementById("flag-cross-colour") as HTMLInputElement).value = flagColour.crossColour;
     (document.getElementById("flag-innercross-colour") as HTMLInputElement).value = flagColour.innerCrossColour;
 
-    setRadioButton('flag-ratio', flagTemplateName);
+    setRadioButton('flag-ratio', getFlagRatioTemplateName(flagSpec.aspectRatio));
 
     (document.getElementById("flag-ratio-custom") as HTMLInputElement).value = flagSpec.aspectRatio.toString();
     (document.getElementById("flag-ratio-custom-number") as HTMLInputElement).value = flagSpec.aspectRatio.toString();
 
     (document.getElementById("flag-cross-v-width") as HTMLInputElement).value = flagSpec.verticalCrossProportion.toString();
-    (document.getElementById("flag-cross-h-height") as HTMLInputElement).value = flagSpec.horizontalCrossProportion.toString();
-    (document.getElementById("flag-cross-v-left") as HTMLInputElement).value = flagSpec.verticalCrossDistanceFromLeft.toString();
-    (document.getElementById("flag-cross-h-top") as HTMLInputElement).value = flagSpec.horizontalCrossDistanceFromTop.toString();
+    (document.getElementById("flag-cross-v-width-number") as HTMLInputElement).value = flagSpec.verticalCrossProportion.toString();
 
-    setRadioButton('flag-has-innercross', flagTemplateName == 'iceland' || flagTemplateName == 'norway' ? 'yes' : 'no');
+    (document.getElementById("flag-cross-h-height") as HTMLInputElement).value = flagSpec.horizontalCrossProportion.toString();
+    (document.getElementById("flag-cross-h-height-number") as HTMLInputElement).value = flagSpec.horizontalCrossProportion.toString();
+
+    (document.getElementById("flag-cross-v-left") as HTMLInputElement).value = flagSpec.verticalCrossDistanceFromLeft.toString();
+    (document.getElementById("flag-cross-v-left-number") as HTMLInputElement).value = flagSpec.verticalCrossDistanceFromLeft.toString();
+
+    (document.getElementById("flag-cross-h-top") as HTMLInputElement).value = flagSpec.horizontalCrossDistanceFromTop.toString();
+    (document.getElementById("flag-cross-h-top-number") as HTMLInputElement).value = flagSpec.horizontalCrossDistanceFromTop.toString();
+
+    setRadioButton('flag-has-innercross', flag.hasInnerCross ? 'yes' : 'no');
     (document.getElementById("flag-innercross-v-width") as HTMLInputElement).value = flagSpec.verticalInnerCrossProportion.toString();
+    (document.getElementById("flag-innercross-v-width-number") as HTMLInputElement).value = flagSpec.verticalInnerCrossProportion.toString();
+
     (document.getElementById("flag-innercross-h-height") as HTMLInputElement).value = flagSpec.horizontalInnerCrossProportion.toString();
+    (document.getElementById("flag-innercross-h-height-number") as HTMLInputElement).value = flagSpec.horizontalInnerCrossProportion.toString();
 
     (document.getElementById("flag-width-number") as HTMLInputElement).value = flag.width.toString();
     (document.getElementById("flag-height") as HTMLInputElement).value = flag.height.toString();
     (document.getElementById("flag-height-number") as HTMLInputElement).value = flag.height.toString();
+}
+
+function getFlagRatioTemplateName(aspectRatio: number): string {
+    if (compareFloats(aspectRatio, 1.0)) {
+        return 'sweden';
+    }
+    if (compareFloats(aspectRatio, 1.321)) {
+        return 'denmark';
+    }
+    if (compareFloats(aspectRatio, 1.375)) {
+        return 'norway';
+    }
+    if (compareFloats(aspectRatio, 1.636)) {
+        return 'norway';
+    }
+    if (compareFloats(aspectRatio, 1.389)) {
+        return 'norway';
+    }
+
+    return '';
 }
 
 function setRadioButton(whichName: string, whichValue: string) {
@@ -156,4 +186,8 @@ function getFormValues(): InputForm {
     const formModel = new InputForm().mapFormValues(values);
 
     return formModel;
+}
+
+function compareFloats(a, b, precision = 0.01): boolean {
+    return Math.abs(a - b) < precision;
 }
