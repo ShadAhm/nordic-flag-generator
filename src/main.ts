@@ -24,6 +24,9 @@ function attachEventListeners(): void {
     document.getElementById('flag-cross-colour')?.addEventListener('change', updateFlagFromInput as EventListener);
     document.getElementById('flag-innercross-colour')?.addEventListener('change', updateFlagFromInput as EventListener);
 
+    document.getElementById('flag-has-innercross-yes')?.addEventListener('change', updateFlagFromInput as EventListener);
+    document.getElementById('flag-has-innercross-no')?.addEventListener('change', updateFlagFromInput as EventListener);
+
     document.getElementById('flag-ratio-custom')?.addEventListener('change', updateFlagFromInput as EventListener);
     document.getElementById('flag-aspect-ratio-like-sweden')?.addEventListener('click', updateFlagRatioFromButton as EventListener);
     document.getElementById('flag-aspect-ratio-like-denmark')?.addEventListener('click', updateFlagRatioFromButton as EventListener);
@@ -125,11 +128,28 @@ function setKnobsBasedOnTemplate(flagColour: FlagColour, flagSpec: FlagSpec, fla
     (document.getElementById("flag-cross-h-top-number") as HTMLInputElement).value = flagSpec.horizontalCrossDistanceFromTop.toString();
 
     setRadioButton('flag-has-innercross', flag.hasInnerCross ? 'yes' : 'no');
-    (document.getElementById("flag-innercross-v-width") as HTMLInputElement).value = flagSpec.verticalInnerCrossProportion.toString();
-    (document.getElementById("flag-innercross-v-width-number") as HTMLInputElement).value = flagSpec.verticalInnerCrossProportion.toString();
+    if (flag.hasInnerCross) {
+        (document.getElementById("flag-innercross-colour") as HTMLInputElement).disabled = false;
 
-    (document.getElementById("flag-innercross-h-height") as HTMLInputElement).value = flagSpec.horizontalInnerCrossProportion.toString();
-    (document.getElementById("flag-innercross-h-height-number") as HTMLInputElement).value = flagSpec.horizontalInnerCrossProportion.toString();
+        (document.getElementById("flag-innercross-v-width") as HTMLInputElement).disabled = false;
+        (document.getElementById("flag-innercross-h-height") as HTMLInputElement).disabled = false;
+        (document.getElementById("flag-innercross-v-width-number") as HTMLInputElement).disabled = false;
+        (document.getElementById("flag-innercross-h-height-number") as HTMLInputElement).disabled = false;
+
+        (document.getElementById("flag-innercross-v-width") as HTMLInputElement).value = flagSpec.verticalInnerCrossProportion.toString();
+        (document.getElementById("flag-innercross-v-width-number") as HTMLInputElement).value = flagSpec.verticalInnerCrossProportion.toString();
+
+        (document.getElementById("flag-innercross-h-height") as HTMLInputElement).value = flagSpec.horizontalInnerCrossProportion.toString();
+        (document.getElementById("flag-innercross-h-height-number") as HTMLInputElement).value = flagSpec.horizontalInnerCrossProportion.toString();
+    }
+    else {
+        (document.getElementById("flag-innercross-colour") as HTMLInputElement).disabled = true;
+
+        (document.getElementById("flag-innercross-v-width") as HTMLInputElement).disabled = true;
+        (document.getElementById("flag-innercross-h-height") as HTMLInputElement).disabled = true;
+        (document.getElementById("flag-innercross-v-width-number") as HTMLInputElement).disabled = true;
+        (document.getElementById("flag-innercross-h-height-number") as HTMLInputElement).disabled = true;
+    }
 
     (document.getElementById("flag-width-number") as HTMLInputElement).value = flag.width.toString();
     (document.getElementById("flag-height") as HTMLInputElement).value = flag.height.toString();
