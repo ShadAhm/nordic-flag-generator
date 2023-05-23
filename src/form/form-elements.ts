@@ -30,11 +30,11 @@ export class FormElements {
     static readonly input_flagCrossHorizontalHeightNumber = document.getElementById('flag-cross-h-height-number') as HTMLInputElement;
     static readonly input_flagCrossVerticalWidth = document.getElementById('flag-cross-v-width') as HTMLInputElement;
     static readonly input_flagCrossVerticalWidthNumber = document.getElementById('flag-cross-v-width-number') as HTMLInputElement;
-    static readonly input_flagCrossHorizontalOffset = document.getElementById('flag-cross-v-left') as HTMLInputElement;
-    static readonly input_flagCrossHorizontalOffsetNumber = document.getElementById('flag-cross-v-left-number') as HTMLInputElement;
-    static readonly input_flagCrossVerticalOffset = document.getElementById('flag-cross-h-top') as HTMLInputElement;
-    static readonly input_flagCrossVerticalOffsetNumber = document.getElementById('flag-cross-h-top-number') as HTMLInputElement;
-    
+    static readonly input_flagCrossHorizontalOffset = document.getElementById('flag-cross-h-top') as HTMLInputElement;
+    static readonly input_flagCrossHorizontalOffsetNumber = document.getElementById('flag-cross-h-top-number') as HTMLInputElement;
+    static readonly input_flagCrossVerticalOffset = document.getElementById('flag-cross-v-left') as HTMLInputElement;
+    static readonly input_flagCrossVerticalOffsetNumber = document.getElementById('flag-cross-v-left-number') as HTMLInputElement;
+
     // Flag innercross settings
     static readonly input_flagHasInnerCrossYes = document.getElementById('flag-has-innercross-yes') as HTMLInputElement;
     static readonly input_flagHasInnerCrossNo = document.getElementById('flag-has-innercross-no') as HTMLInputElement;
