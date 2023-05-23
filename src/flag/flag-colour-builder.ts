@@ -1,5 +1,5 @@
-import { FlagColour } from './flag-colour.js';
-import { InputForm } from './input-form.js';
+import { FlagColour } from './flag-colour.ts';
+import { InputFormModel } from '../form/input-form-model.ts';
 
 export class FlagColourBuilder {
     private backgroundColour: string = '';
@@ -52,7 +52,7 @@ export class FlagColourBuilder {
         return this;
     }
 
-    withUserInputs(userInputs: InputForm): FlagColourBuilder {
+    withUserInputs(userInputs: InputFormModel): FlagColourBuilder {
         this.backgroundColour = userInputs.flagBackgroundColour;
         this.crossColour = userInputs.flagCrossColour;
         this.innerCrossColour = userInputs.flagInnerCrossColour;

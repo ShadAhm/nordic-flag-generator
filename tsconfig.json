@@ -22,7 +22,7 @@
         "noFallthroughCasesInSwitch": true
     },
     "include": [
-        "scripts"
-, "src/flag-colour-builder.ts"    ],
+        "src"
+     ],
     "exclude": ["node_modules"]
 }

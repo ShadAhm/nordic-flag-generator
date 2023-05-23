@@ -1,4 +1,4 @@
-export class InputForm {
+export class InputFormModel {
     flagBackgroundColour: string = '';
     flagCrossColour: string = '';
     flagCrossHHeight: number = 0;
@@ -12,7 +12,7 @@ export class InputForm {
     flagWidth: number = 0;
     flagHasInnerCross: boolean = false;
   
-    mapFormValues(formValues: Record<string, string | number>): InputForm {
+    mapFormValues(formValues: Record<string, string | number>): InputFormModel {
       this.flagBackgroundColour = formValues['flag-background-colour'] as string;
       this.flagCrossColour = formValues['flag-cross-colour'] as string;
       this.flagCrossHHeight = Number(formValues['flag-cross-h-height']);

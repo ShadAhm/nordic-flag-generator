@@ -1,5 +1,5 @@
-import { FlagSpec } from "./flag-spec.js";
-import { InputForm } from "./input-form.js";
+import { InputFormModel } from "../form/input-form-model.ts";
+import { FlagSpec } from "./flag-spec.ts";
 
 export class FlagSpecBuilder {
     aspectRatio = 0;
@@ -91,7 +91,7 @@ export class FlagSpecBuilder {
         return this;
     }
 
-    withUserInputs(userInputs: InputForm) {
+    withUserInputs(userInputs: InputFormModel) {
         this.aspectRatio = userInputs.flagRatioCustom;
         this.hasInnerCross = userInputs.flagHasInnerCross;
         this.verticalCrossProportion = userInputs.flagCrossVWidth;

@@ -1,9 +1,9 @@
-import { FlagSpecBuilder } from "./flag-spec-builder.js";
-import { FlagColourBuilder } from "./flag-colour-builder.js";
-import { Flag } from "./flag.js";
-import { InputForm } from "./input-form.js";
-import { FlagColour } from "./flag-colour.js";
-import { FlagSpec } from "./flag-spec.js";
+import { FlagSpecBuilder } from "./flag/flag-spec-builder.ts";
+import { FlagColourBuilder } from "./flag/flag-colour-builder.ts";
+import { Flag } from "./flag/flag.ts";
+import { FormElements } from "./form/form-elements.ts";
+import { FlagDiagram } from "./diagram/flag-diagram.ts";
+import { FlagForm } from "./form/flag-form.ts";
 
 attachEventListeners();
 const flagColorBuilder = new FlagColourBuilder();
@@ -12,34 +12,34 @@ const flagSpecBuilder = new FlagSpecBuilder();
 updateFlagFromInput();
 
 function attachEventListeners(): void {
-    document.getElementById('flag-template-sweden')?.addEventListener('click', useTemplate as EventListener);
-    document.getElementById('flag-template-denmark')?.addEventListener('click', useTemplate as EventListener);
-    document.getElementById('flag-template-norway')?.addEventListener('click', useTemplate as EventListener);
-    document.getElementById('flag-template-finland')?.addEventListener('click', useTemplate as EventListener);
-    document.getElementById('flag-template-iceland')?.addEventListener('click', useTemplate as EventListener);
+    FormElements.btn_useTemplateSweden?.addEventListener('click', useTemplate as EventListener);
+    FormElements.btn_useTemplateDenmark?.addEventListener('click', useTemplate as EventListener);
+    FormElements.btn_useTemplateNorway?.addEventListener('click', useTemplate as EventListener);
+    FormElements.btn_useTemplateFinland?.addEventListener('click', useTemplate as EventListener);
+    FormElements.btn_useTemplateIceland?.addEventListener('click', useTemplate as EventListener);
 
-    document.getElementById('flag-width')?.addEventListener('change', updateFlagFromInput as EventListener);
+    FormElements.input_flagWidth?.addEventListener('change', updateFlagFromInput as EventListener);
 
-    document.getElementById('flag-background-colour')?.addEventListener('change', updateFlagFromInput as EventListener);
-    document.getElementById('flag-cross-colour')?.addEventListener('change', updateFlagFromInput as EventListener);
-    document.getElementById('flag-innercross-colour')?.addEventListener('change', updateFlagFromInput as EventListener);
+    FormElements.input_flagBackgroundColour?.addEventListener('change', updateFlagFromInput as EventListener);
+    FormElements.input_flagCrossColour?.addEventListener('change', updateFlagFromInput as EventListener);
+    FormElements.input_flagInnerCrossColour?.addEventListener('change', updateFlagFromInput as EventListener);
 
-    document.getElementById('flag-has-innercross-yes')?.addEventListener('change', updateFlagFromInput as EventListener);
-    document.getElementById('flag-has-innercross-no')?.addEventListener('change', updateFlagFromInput as EventListener);
+    FormElements.input_flagHasInnerCrossYes?.addEventListener('change', updateFlagFromInput as EventListener);
+    FormElements.input_flagHasInnerCrossNo?.addEventListener('change', updateFlagFromInput as EventListener);
 
-    document.getElementById('flag-ratio-custom')?.addEventListener('change', updateFlagFromInput as EventListener);
-    document.getElementById('flag-aspect-ratio-like-sweden')?.addEventListener('click', updateFlagRatioFromButton as EventListener);
-    document.getElementById('flag-aspect-ratio-like-denmark')?.addEventListener('click', updateFlagRatioFromButton as EventListener);
-    document.getElementById('flag-aspect-ratio-like-norway')?.addEventListener('click', updateFlagRatioFromButton as EventListener);
-    document.getElementById('flag-aspect-ratio-like-finland')?.addEventListener('click', updateFlagRatioFromButton as EventListener);
-    document.getElementById('flag-aspect-ratio-like-iceland')?.addEventListener('click', updateFlagRatioFromButton as EventListener);
+    FormElements.input_flagRatioCustom?.addEventListener('change', updateFlagFromInput as EventListener);
+    FormElements.radio_flagAspectRatioLikeSweden?.addEventListener('click', updateFlagRatioFromButton as EventListener);
+    FormElements.radio_flagAspectRatioLikeDenmark?.addEventListener('click', updateFlagRatioFromButton as EventListener);
+    FormElements.radio_flagAspectRatioLikeNorway?.addEventListener('click', updateFlagRatioFromButton as EventListener);
+    FormElements.radio_flagAspectRatioLikeFinland?.addEventListener('click', updateFlagRatioFromButton as EventListener);
+    FormElements.radio_flagAspectRatioLikeIceland?.addEventListener('click', updateFlagRatioFromButton as EventListener);
 
-    document.getElementById('flag-cross-v-width')?.addEventListener('change', updateFlagFromInput as EventListener);
-    document.getElementById('flag-cross-h-height')?.addEventListener('change', updateFlagFromInput as EventListener);
-    document.getElementById('flag-innercross-v-width')?.addEventListener('change', updateFlagFromInput as EventListener);
-    document.getElementById('flag-innercross-h-height')?.addEventListener('change', updateFlagFromInput as EventListener);
-    document.getElementById('flag-cross-v-left')?.addEventListener('change', updateFlagFromInput as EventListener);
-    document.getElementById('flag-cross-h-top')?.addEventListener('change', updateFlagFromInput as EventListener);
+    FormElements.input_flagCrossHorizontalHeight?.addEventListener('change', updateFlagFromInput as EventListener);
+    FormElements.input_flagCrossVerticalWidth?.addEventListener('change', updateFlagFromInput as EventListener);
+    FormElements.input_flagInnerCrossHorizontalHeight?.addEventListener('change', updateFlagFromInput as EventListener);
+    FormElements.input_flagInnerCrossVerticalWidth?.addEventListener('change', updateFlagFromInput as EventListener);
+    FormElements.input_flagCrossHorizontalOffset?.addEventListener('change', updateFlagFromInput as EventListener);
+    FormElements.input_flagCrossVerticalOffset?.addEventListener('change', updateFlagFromInput as EventListener);
 }
 
 function useTemplate(e: PointerEvent) {
@@ -55,16 +55,17 @@ function useTemplate(e: PointerEvent) {
 
     const flag = new Flag()
         .drawFromSpec(flagWidth, flagSpec)
-        .colourize(flagColour)
-        .paint();
+        .colourize(flagColour);
 
-    setKnobsBasedOnTemplate(flagColour, flagSpec, flag);
+    FlagDiagram.paint(flag);
+
+    FlagForm.setValues(flagColour, flagSpec, flag);
 }
 
 function updateFlagRatioFromButton(e: PointerEvent) {
     const ratioTemplateName = (e.target as HTMLInputElement).value;
 
-    const userInputs = getFormValues();
+    const userInputs = FlagForm.getValues();
 
     const flagColour = flagColorBuilder
         .withUserInputs(userInputs)
@@ -80,14 +81,15 @@ function updateFlagRatioFromButton(e: PointerEvent) {
 
     const flag = new Flag()
         .drawFromSpec(userInputs.flagWidth, flagSpec)
-        .colourize(flagColour)
-        .paint();
+        .colourize(flagColour);
 
-    setKnobsBasedOnTemplate(flagColour, flagSpec, flag);
+    FlagDiagram.paint(flag);
+
+    FlagForm.setValues(flagColour, flagSpec, flag);
 }
 
 function updateFlagFromInput() {
-    const userInputs = getFormValues();
+    const userInputs = FlagForm.getValues();
 
     const flagColour = flagColorBuilder
         .withUserInputs(userInputs)
@@ -99,115 +101,9 @@ function updateFlagFromInput() {
 
     const flag = new Flag()
         .drawFromSpec(userInputs.flagWidth, flagSpec)
-        .colourize(flagColour)
-        .paint();
+        .colourize(flagColour);
 
-    setKnobsBasedOnTemplate(flagColour, flagSpec, flag);
-}
+    FlagDiagram.paint(flag);
 
-function setKnobsBasedOnTemplate(flagColour: FlagColour, flagSpec: FlagSpec, flag: Flag) {
-    (document.getElementById("flag-background-colour") as HTMLInputElement).value = flagColour.backgroundColour;
-    (document.getElementById("flag-cross-colour") as HTMLInputElement).value = flagColour.crossColour;
-    (document.getElementById("flag-innercross-colour") as HTMLInputElement).value = flagColour.innerCrossColour;
-
-    setRadioButton('flag-ratio', getFlagRatioTemplateName(flagSpec.aspectRatio));
-
-    (document.getElementById("flag-ratio-custom") as HTMLInputElement).value = flagSpec.aspectRatio.toString();
-    (document.getElementById("flag-ratio-custom-number") as HTMLInputElement).value = flagSpec.aspectRatio.toString();
-
-    (document.getElementById("flag-cross-v-width") as HTMLInputElement).value = flagSpec.verticalCrossProportion.toString();
-    (document.getElementById("flag-cross-v-width-number") as HTMLInputElement).value = flagSpec.verticalCrossProportion.toString();
-
-    (document.getElementById("flag-cross-h-height") as HTMLInputElement).value = flagSpec.horizontalCrossProportion.toString();
-    (document.getElementById("flag-cross-h-height-number") as HTMLInputElement).value = flagSpec.horizontalCrossProportion.toString();
-
-    (document.getElementById("flag-cross-v-left") as HTMLInputElement).value = flagSpec.verticalCrossDistanceFromLeft.toString();
-    (document.getElementById("flag-cross-v-left-number") as HTMLInputElement).value = flagSpec.verticalCrossDistanceFromLeft.toString();
-
-    (document.getElementById("flag-cross-h-top") as HTMLInputElement).value = flagSpec.horizontalCrossDistanceFromTop.toString();
-    (document.getElementById("flag-cross-h-top-number") as HTMLInputElement).value = flagSpec.horizontalCrossDistanceFromTop.toString();
-
-    setRadioButton('flag-has-innercross', flag.hasInnerCross ? 'yes' : 'no');
-    if (flag.hasInnerCross) {
-        (document.getElementById("flag-innercross-colour") as HTMLInputElement).disabled = false;
-
-        (document.getElementById("flag-innercross-v-width") as HTMLInputElement).disabled = false;
-        (document.getElementById("flag-innercross-h-height") as HTMLInputElement).disabled = false;
-        (document.getElementById("flag-innercross-v-width-number") as HTMLInputElement).disabled = false;
-        (document.getElementById("flag-innercross-h-height-number") as HTMLInputElement).disabled = false;
-
-        (document.getElementById("flag-innercross-v-width") as HTMLInputElement).value = flagSpec.verticalInnerCrossProportion.toString();
-        (document.getElementById("flag-innercross-v-width-number") as HTMLInputElement).value = flagSpec.verticalInnerCrossProportion.toString();
-
-        (document.getElementById("flag-innercross-h-height") as HTMLInputElement).value = flagSpec.horizontalInnerCrossProportion.toString();
-        (document.getElementById("flag-innercross-h-height-number") as HTMLInputElement).value = flagSpec.horizontalInnerCrossProportion.toString();
-    }
-    else {
-        (document.getElementById("flag-innercross-colour") as HTMLInputElement).disabled = true;
-
-        (document.getElementById("flag-innercross-v-width") as HTMLInputElement).disabled = true;
-        (document.getElementById("flag-innercross-h-height") as HTMLInputElement).disabled = true;
-        (document.getElementById("flag-innercross-v-width-number") as HTMLInputElement).disabled = true;
-        (document.getElementById("flag-innercross-h-height-number") as HTMLInputElement).disabled = true;
-    }
-
-    (document.getElementById("flag-width-number") as HTMLInputElement).value = flag.width.toString();
-    (document.getElementById("flag-height") as HTMLInputElement).value = flag.height.toString();
-    (document.getElementById("flag-height-number") as HTMLInputElement).value = flag.height.toString();
-}
-
-function getFlagRatioTemplateName(aspectRatio: number): string {
-    if (compareFloats(aspectRatio, 1.0)) {
-        return 'sweden';
-    }
-    if (compareFloats(aspectRatio, 1.321)) {
-        return 'denmark';
-    }
-    if (compareFloats(aspectRatio, 1.375)) {
-        return 'norway';
-    }
-    if (compareFloats(aspectRatio, 1.636)) {
-        return 'norway';
-    }
-    if (compareFloats(aspectRatio, 1.389)) {
-        return 'norway';
-    }
-
-    return '';
-}
-
-function setRadioButton(whichName: string, whichValue: string) {
-    const radios = document.getElementsByName(whichName);
-    for (let i = 0; i < radios.length; i++) {
-        let radioInput = radios[i] as HTMLInputElement;
-
-        if (radioInput.value == whichValue) {
-            radioInput.checked = true;
-        }
-    }
-}
-
-function getFormValues(): InputForm {
-    const inputs = document.querySelectorAll('input');
-    let values: Record<string, string | number> = {};
-
-    inputs.forEach(input => {
-        if (input.type === 'radio' && !input.checked) {
-            return;
-        }
-
-        if (input.type === 'range') {
-            values[input.id] = parseFloat(input.value);
-        } else {
-            values[input.id] = input.value;
-        }
-    });
-
-    const formModel = new InputForm().mapFormValues(values);
-
-    return formModel;
-}
-
-function compareFloats(a, b, precision = 0.01): boolean {
-    return Math.abs(a - b) < precision;
+    FlagForm.setValues(flagColour, flagSpec, flag);
 }

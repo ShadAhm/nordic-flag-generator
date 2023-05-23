@@ -59,7 +59,7 @@
                         <div class="form-range-picker">
                             <input id="flag-width" name="flag-width" type="range" min="50" max="1000" step="50"
                                 value="800" />
-                            <input type="number" id="flag-width-number" name="flag-width-number" value="800" />
+                            <input type="number" id="flag-width-number" name="flag-width-number" value="800" readonly />
                         </div>
                     </div>
                     <div class="form-group">
@@ -125,7 +125,7 @@
                     <div class="form-range-picker">
                         <input id="flag-ratio-custom" name="flag-ratio-custom" type="range" min="1" max="2" value="2"
                             step="0.1">
-                        <input type="number" id="flag-ratio-custom-number" name="flag-ratio-custom-number" value="2">
+                        <input type="number" id="flag-ratio-custom-number" name="flag-ratio-custom-number" value="2"  readonly />
                     </div>
                 </div>
             </fieldset>
@@ -135,8 +135,6 @@
                 <input type="color" id="flag-background-colour" name="flag-backg round-colour" value="#FFD100">
                 <label for="flag-cross-colour">Cross colour:</label>
                 <input type="color" id="flag-cross-colour" name="flag-cross-colour" value="#ffffff">
-                <label for="flag-innercross-colour">Inner cross colour:</label>
-                <input type="color" id="flag-innercross-colour" name="flag-innercross-colour" value="#0033A0">
             </fieldset>
             <fieldset name="cross-settings">
                 <legend>Cross settings</legend>
@@ -145,7 +143,7 @@
                     <input id="flag-cross-v-width" name="flag-cross-v-width" type="range" min="0.0001" max="1"
                         value="0.11" step="0.0005">
                     <input id="flag-cross-v-width-number" name="flag-cross-v-width-number" type="number" min="0.0001"
-                        max="1" value="0.11" step="0.0005">
+                        max="1" value="0.11" step="0.0005" readonly />
                 </div>
 
                 <label for="flag-cross-h-height">Horizontal cross height ratio:</label>
@@ -153,7 +151,7 @@
                     <input id="flag-cross-h-height" name="flag-cross-h-height" type="range" min="0.0001" max="1"
                         value="0.22" step="0.0005">
                     <input id="flag-cross-h-height-number" name="flag-cross-h-height-number" type="number" min="0.0001"
-                        max="1" value="0.22" step="0.0005">
+                        max="1" value="0.22" step="0.0005" readonly />
                 </div>
 
                 <label for="flag-cross-v-left">Vertical cross distance from left</label>
@@ -162,7 +160,7 @@
                     <input id="flag-cross-v-left" name="flag-cross-v-left" type="range" min="0.0001" max="1" value="0.3"
                         step="0.0005">
                     <input id="flag-cross-v-left-number" name="flag-cross-v-left-number" type="number" min="0.0001"
-                        max="1" value="0.3" step="0.0005">
+                        max="1" value="0.3" step="0.0005" readonly />
                 </div>
 
                 <label for="flag-cross-h-top">Horizontal cross distance from top</label>
@@ -170,7 +168,7 @@
                     <input id="flag-cross-h-top" name="flag-cross-h-top" type="range" min="0.0001" max="1" value="0.5"
                         step="0.0005">
                     <input id="flag-cross-h-top-number" name="flag-cross-h-top-number" type="number" min="0.0001"
-                        max="1" value="0.5" step="0.0005">
+                        max="1" value="0.5" step="0.0005" readonly />
                 </div>
             </fieldset>
             <fieldset name="innercross-settings">
@@ -188,7 +186,7 @@
                         <input id="flag-innercross-v-width" name="flag-innercross-v-width" type="range" min="0" max="1"
                             value="0.5" step="0.1">
                         <input id="flag-innercross-v-width-number" name="flag-innercross-v-width-number" type="number"
-                            min="0" max="1" value="0.5" step="0.1">
+                            min="0" max="1" value="0.5" step="0.1" readonly />
                     </div>
                 </div>
 
@@ -198,8 +196,13 @@
                         <input id="flag-innercross-h-height" name="flag-innercross-h-height" type="range" min="0"
                             max="1" value="0.5" step="0.1">
                         <input id="flag-innercross-h-height-number" name="flag-innercross-h-height-number" type="number"
-                            min="0" max="1" value="0.5" step="0.1">
+                            min="0" max="1" value="0.5" step="0.1" readonly />
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="flag-innercross-colour">Colour:</label>
+                    <input type="color" id="flag-innercross-colour" name="flag-innercross-colour" value="#0033A0">
                 </div>
             </fieldset>
         </div>

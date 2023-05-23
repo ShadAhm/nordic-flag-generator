@@ -88,3 +88,8 @@ div.form-range-picker input[type="number"] {
     color: beige;
     padding:4px 10px;
 }
+
+div.form-range-picker input[type="number"]:disabled {
+    background-color: #ddd;
+    color: #444444;
+}
