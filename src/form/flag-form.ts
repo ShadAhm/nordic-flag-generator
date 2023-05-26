@@ -1,5 +1,6 @@
 import { Flag } from "../flag/flag";
 import { FlagColour } from "../flag/flag-colour";
+import { FlagRatio } from "../flag/flag-ratio";
 import { FlagSpec } from "../flag/flag-spec";
 import { FormElements } from "./form-elements";
 import { InputFormModel } from "./input-form-model";
@@ -10,7 +11,7 @@ export class FlagForm {
         FormElements.input_flagCrossColour.value = flagColour.crossColour;
         FormElements.input_flagInnerCrossColour.value = flagColour.innerCrossColour;
 
-        FlagForm.setRadioButton('flag-ratio', FlagForm.getFlagRatioTemplateName(flagSpec.aspectRatio));
+        FlagForm.setRadioButton('flag-aspect-ratio', FlagRatio.getRatioName(flagSpec.aspectRatio));
 
         FormElements.input_flagRatioCustom.value = flagSpec.aspectRatio.toString();
         FormElements.input_flagRatioCustomNumber.value = flagSpec.aspectRatio.toString();
@@ -85,29 +86,5 @@ export class FlagForm {
         const formModel = new InputFormModel().mapFormValues(values);
 
         return formModel;
-    }
-
-    static getFlagRatioTemplateName(aspectRatio: number): string {
-        if (FlagForm.compareFloats(aspectRatio, 1.0)) {
-            return 'sweden';
-        }
-        if (FlagForm.compareFloats(aspectRatio, 1.321)) {
-            return 'denmark';
-        }
-        if (FlagForm.compareFloats(aspectRatio, 1.375)) {
-            return 'norway';
-        }
-        if (FlagForm.compareFloats(aspectRatio, 1.636)) {
-            return 'norway';
-        }
-        if (FlagForm.compareFloats(aspectRatio, 1.389)) {
-            return 'norway';
-        }
-    
-        return '';
-    }
-
-    static compareFloats(a: number, b: number, precision: number = 0.01): boolean {
-        return Math.abs(a - b) < precision;
     }
 }

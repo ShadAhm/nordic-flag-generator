@@ -6,6 +6,21 @@ export class FlagColourBuilder {
     private crossColour: string = '';
     private innerCrossColour: string = '';
 
+    namedColours: Record<string, string> = {
+        'norwegian-red': '#ba0c2f',
+        'norwegian-blue': '#00205b',
+        'norwegian-white': '#ffffff',
+        'danish-red': '#bf0028',
+        'danish-white': '#ffffff',
+        'finnish-blue': '#0d2c6e',
+        'finnish-white': '#ffffff',
+        'icelandic-blue': '#1b52a0',
+        'icelandic-red': '#d31931',
+        'icelandic-white': '#ffffff',
+        'swedish-blue': '#236bab',
+        'swedish-yellow': '#f9cd00',
+    };
+
     constructor() {
     }
 
@@ -13,38 +28,35 @@ export class FlagColourBuilder {
         switch (templateName) {
             case 'norway':
                 {
-                    this.backgroundColour = '#ba0c2f';
-                    this.crossColour = '#ffffff';
-                    this.innerCrossColour = '#00205b';
+                    this.backgroundColour = this.namedColours['norwegian-red'];
+                    this.crossColour = this.namedColours['norwegian-white'];
+                    this.innerCrossColour = this.namedColours['norwegian-blue'];
                     break;
                 }
             case 'denmark':
                 {
-                    this.backgroundColour = '#bf0028';
-                    this.crossColour = '#ffffff';
-                    this.innerCrossColour = '#ffffff';
+                    this.backgroundColour = this.namedColours['danish-red'];
+                    this.crossColour = this.namedColours['danish-white'];
                     break;
                 }
             case 'finland':
                 {
-                    this.backgroundColour = '#ffffff';
-                    this.crossColour = '#0d2c6e';
-                    this.innerCrossColour = '#0d2c6e';
+                    this.backgroundColour = this.namedColours['finnish-white'];
+                    this.crossColour = this.namedColours['finnish-blue'];
                     break;
                 }
             case 'iceland':
                 {
-                    this.backgroundColour = '#1b52a0';
-                    this.crossColour = '#ffffff';
-                    this.innerCrossColour = '#d31931';
+                    this.backgroundColour = this.namedColours['icelandic-blue'];
+                    this.crossColour = this.namedColours['icelandic-white'];
+                    this.innerCrossColour = this.namedColours['icelandic-red'];
                     break;
                 }
             case 'sweden':
             default:
                 {
-                    this.backgroundColour = '#236bab';
-                    this.crossColour = '#f9cd00';
-                    this.innerCrossColour = '#f9cd00';
+                    this.backgroundColour = this.namedColours['swedish-blue'];
+                    this.crossColour = this.namedColours['swedish-yellow'];
                     break;
                 }
         }
