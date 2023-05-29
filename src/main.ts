@@ -40,6 +40,8 @@ function attachEventListeners(): void {
     FormElements.input_flagInnerCrossVerticalWidth?.addEventListener('change', updateFlagFromInput as EventListener);
     FormElements.input_flagCrossHorizontalOffset?.addEventListener('change', updateFlagFromInput as EventListener);
     FormElements.input_flagCrossVerticalOffset?.addEventListener('change', updateFlagFromInput as EventListener);
+
+    FormElements.btn_downloadFlag?.addEventListener('click', downloadFlag as EventListener);
 }
 
 function useTemplate(e: PointerEvent) {
@@ -106,4 +108,18 @@ function updateFlagFromInput() {
     FlagDiagram.paint(flag);
 
     FlagForm.setValues(flagColour, flagSpec, flag);
+}
+
+
+// download the flag as SVG file
+function downloadFlag() {
+    const svg = document.getElementById("diag-flag")?.outerHTML;
+    const svgBlob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
+    const svgUrl = URL.createObjectURL(svgBlob);
+    const downloadLink = document.createElement("a");
+    downloadLink.href = svgUrl;
+    downloadLink.download = "flag.svg";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
 }
