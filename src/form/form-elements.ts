@@ -43,6 +43,7 @@ export class FormElements {
     static readonly input_flagInnerCrossVerticalWidth = document.getElementById('flag-innercross-v-width') as HTMLInputElement;
     static readonly input_flagInnerCrossVerticalWidthNumber = document.getElementById('flag-innercross-v-width-number') as HTMLInputElement;
     
-    // Download button
+    // Download buttons
     static readonly btn_downloadFlag = document.getElementById('flag-download-button') as HTMLButtonElement;
+    static readonly btn_downloadFlagPng = document.getElementById('flag-download-png-button') as HTMLButtonElement;
 }
