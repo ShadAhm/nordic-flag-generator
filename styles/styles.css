@@ -1,30 +1,115 @@
+@import url("tokens.css");
 @import url("../node_modules/normalize.css/normalize.css");
 @import url("forms.css");
 @import url("forms-grid.css");
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
-    font-family:Roboto, Helvetica, sans-serif;
-    color: rgb(29, 49, 49);
-    padding: 1rem;
+    font-family: var(--font-family);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    padding: var(--space-4);
+    margin: 0;
+    line-height: var(--line-height-base);
+}
+
+#greeting {
+    max-width: 70ch;
+    margin: 0 auto var(--space-5);
+    padding: 0 var(--space-2);
+}
+
+.app-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-5);
+}
+
+.preview-column {
+    flex: 0 0 var(--preview-col-width);
+    position: sticky;
+    top: var(--space-4);
+    align-self: flex-start;
+    max-height: calc(100vh - var(--space-6));
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
 }
 
 .diagram-pane {
-    flex-grow: 6;
-    padding:1rem;
+    padding: var(--space-4);
     display: flex;
     align-content: stretch;
     justify-content: center;
     align-items: center;
-    background-image: radial-gradient(#f9ff00 2px, transparent 2px);
+    background-image: radial-gradient(var(--color-diagram-dot) 2px, transparent 2px);
     background-size: 23px 23px;
-    background-color: #edfbff;
-    border-radius: 2%;
+    background-color: var(--color-diagram-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
 }
 
 form {
-    flex-grow: 1;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
-.height-width-sliders {
-    display: none;
+@media (max-width: 900px) {
+    .app-layout {
+        flex-direction: column;
+    }
+
+    .preview-column {
+        position: static;
+        width: 100%;
+        max-height: none;
+        flex: none;
+    }
+
+    form {
+        width: 100%;
+    }
+}
+
+@media (max-width: 560px) {
+    body {
+        padding: var(--space-2);
+    }
+
+    .app-layout {
+        gap: var(--space-4);
+    }
+}
+
+.site-footer {
+    max-width: 70ch;
+    margin: var(--space-6) auto 0;
+    padding: 0 var(--space-2);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+.site-footer p {
+    margin: 0 0 var(--space-1);
+}
+
+.site-footer a {
+    color: var(--color-text-muted);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.site-footer a:hover {
+    color: var(--color-accent);
+}
+
+.site-footer a:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
 }

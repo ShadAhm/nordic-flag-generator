@@ -42,6 +42,7 @@ function attachEventListeners(): void {
     FormElements.input_flagCrossVerticalOffset?.addEventListener('change', updateFlagFromInput as EventListener);
 
     FormElements.btn_downloadFlag?.addEventListener('click', downloadFlag as EventListener);
+    FormElements.btn_downloadFlagPng?.addEventListener('click', downloadFlagAsPng as EventListener);
 }
 
 function useTemplate(e: PointerEvent) {
@@ -114,6 +115,9 @@ function updateFlagFromInput() {
 // download the flag as SVG file
 function downloadFlag() {
     const svg = document.getElementById("diag-flag")?.outerHTML;
+    if (!svg) {
+        return;
+    }
     const svgBlob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
     const svgUrl = URL.createObjectURL(svgBlob);
     const downloadLink = document.createElement("a");
@@ -122,4 +126,52 @@ function downloadFlag() {
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
+}
+
+// download the flag as PNG file
+function downloadFlagAsPng() {
+    const svgElement = document.getElementById("diag-flag");
+    if (!svgElement) {
+        return;
+    }
+
+    const width = parseFloat(svgElement.getAttribute("width") || "0");
+    const height = parseFloat(svgElement.getAttribute("height") || "0");
+    if (!width || !height) {
+        return;
+    }
+
+    const svgBlob = new Blob([svgElement.outerHTML], { type: "image/svg+xml;charset=utf-8" });
+    const svgUrl = URL.createObjectURL(svgBlob);
+
+    const image = new Image();
+    image.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+
+        const context = canvas.getContext("2d");
+        if (!context) {
+            URL.revokeObjectURL(svgUrl);
+            return;
+        }
+
+        context.drawImage(image, 0, 0, width, height);
+        URL.revokeObjectURL(svgUrl);
+
+        canvas.toBlob((pngBlob) => {
+            if (!pngBlob) {
+                return;
+            }
+            const pngUrl = URL.createObjectURL(pngBlob);
+            const downloadLink = document.createElement("a");
+            downloadLink.href = pngUrl;
+            downloadLink.download = "flag.png";
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            URL.revokeObjectURL(pngUrl);
+        }, "image/png");
+    };
+    image.src = svgUrl;
 }
